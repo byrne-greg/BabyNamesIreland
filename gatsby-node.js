@@ -26,6 +26,9 @@ async function createBirthNameNode(createNode) {
 
     // map into these results and create nodes
     birthNames.map((person, i) => {
+
+
+
       // Create your node object
       const birthNameNode = {
       // Required fields
@@ -40,7 +43,9 @@ async function createBirthNameNode(createNode) {
   
       // Other fields that you want to query with graphQl
       gender: person.gender,
-      name: person.name
+      name: person.name,
+      data: person.data,
+      
     }
   
     // Get content digest of node. (Required field)
@@ -86,6 +91,11 @@ exports.createPages = async ({ graphql, actions }) => {
           nodes {
             gender
             name
+            data {
+              year
+              total
+              rank
+            }
           }
         }
       }`);
@@ -96,6 +106,4 @@ exports.createPages = async ({ graphql, actions }) => {
         context: { person },
       })
     })
-
-    
   }
