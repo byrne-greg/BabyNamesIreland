@@ -4,6 +4,7 @@ import { Row, Col, Card } from 'antd'
 import BirthNameRankStat from "./rank-stat"
 import BirthNameRankChangeStat from "./rank-change-stat"
 import BirthNameCountStat from "./count-stat"
+import BirthNameCountChangeStat from "./count-change-stat"
 import GenderStat from './gender-stat'
 import constants from "./constants"
 
@@ -14,6 +15,7 @@ const PersonInfoStatistics = ({ person }) => {
   const latestRecordedRank = latestRecord.rank
   const rankingChange = getRankingChangeFromPreviousRecord(personData)
   const secondLatestRecordYear = getRecordBeforeLatest(personData).year
+  const countChange = getCountChangeFromPreviousRecord(personData)
 
   const StatCard = ({ children }) => (
     <Card bordered={false}>
@@ -32,6 +34,9 @@ const PersonInfoStatistics = ({ person }) => {
         </Col>
         <Col >
           <StatCard><BirthNameCountStat name={person.name} lastRecordedYear={latestRecordedYear} count={latestRecord.total}/></StatCard>
+        </Col>
+        <Col >
+          <StatCard><BirthNameCountChangeStat name={person.name} lastRecordedYear={secondLatestRecordYear} countChange={countChange.value} countChangeDirection={countChange.direction}/></StatCard>
         </Col>
         <Col >
           <StatCard><BirthNameRankStat lastRecordedYear={latestRecordedYear} rank={latestRecordedRank} gender={person.gender} movementArrow={rankingChange.direction}/></StatCard>
@@ -71,4 +76,13 @@ function getRankingChangeFromPreviousRecord (personData) {
   if (rankingChangeRaw < 0) rankingMovement = constants.MOVEMENT.UP
   if (rankingChangeRaw > 0) rankingMovement = constants.MOVEMENT.DOWN
   return { value: Math.abs(rankingChangeRaw), direction: rankingMovement }
+}
+
+function getCountChangeFromPreviousRecord (personData) {
+  const sortedRecords = sortPersonDataByYear(personData)
+  const countChangeRaw = sortedRecords[0].total - sortedRecords[1].total
+  let countMovement = constants.MOVEMENT.NONE
+  if (countChangeRaw < 0) countMovement = constants.MOVEMENT.DOWN
+  if (countChangeRaw > 0) countMovement = constants.MOVEMENT.UP
+  return { value: Math.abs(countChangeRaw), direction: countMovement }
 }
