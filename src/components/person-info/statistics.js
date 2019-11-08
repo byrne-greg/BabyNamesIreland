@@ -70,19 +70,27 @@ function getRecordBeforeLatest (personData) {
 }
 
 function getRankingChangeFromPreviousRecord (personData) {
-  const sortedRecords = sortPersonDataByYear(personData)
-  const rankingChangeRaw = sortedRecords[0].rank - sortedRecords[1].rank
   let rankingMovement = constants.MOVEMENT.NONE
-  if (rankingChangeRaw < 0) rankingMovement = constants.MOVEMENT.UP
-  if (rankingChangeRaw > 0) rankingMovement = constants.MOVEMENT.DOWN
-  return { value: Math.abs(rankingChangeRaw), direction: rankingMovement }
+  if (personData.length > 0) {
+    const sortedRecords = sortPersonDataByYear(personData)
+    const rankingChangeRaw = sortedRecords[0].rank - sortedRecords[1].rank
+    if (rankingChangeRaw < 0) rankingMovement = constants.MOVEMENT.UP
+    if (rankingChangeRaw > 0) rankingMovement = constants.MOVEMENT.DOWN
+    return { value: Math.abs(rankingChangeRaw), direction: rankingMovement }
+  } else {
+    return { value: 0, direction: rankingMovement }
+  }
 }
 
 function getCountChangeFromPreviousRecord (personData) {
-  const sortedRecords = sortPersonDataByYear(personData)
-  const countChangeRaw = sortedRecords[0].total - sortedRecords[1].total
   let countMovement = constants.MOVEMENT.NONE
-  if (countChangeRaw < 0) countMovement = constants.MOVEMENT.DOWN
-  if (countChangeRaw > 0) countMovement = constants.MOVEMENT.UP
-  return { value: Math.abs(countChangeRaw), direction: countMovement }
+  if (personData.length > 0) {
+    const sortedRecords = sortPersonDataByYear(personData)
+    const countChangeRaw = sortedRecords[0].total - sortedRecords[1].total
+    if (countChangeRaw < 0) countMovement = constants.MOVEMENT.DOWN
+    if (countChangeRaw > 0) countMovement = constants.MOVEMENT.UP
+    return { value: Math.abs(countChangeRaw), direction: countMovement }
+  } else {
+    return { value: 0, direction: countMovement }
+  }
 }
