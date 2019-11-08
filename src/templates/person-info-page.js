@@ -10,18 +10,6 @@ import BirthNameRankChart from "../components/person-info/birth-name-rank-chart"
 import '../../node_modules/react-vis/dist/style.css'
 
 const PersonTemplate = ({ pageContext: { person } }) => {
-  const notSorted = person.data
-  const sortedD = person.data.sort((a, b) => {
-    const aYear = Number(a.year)
-    const bYear = Number(b.year)
-    console.log(`${aYear} < ${bYear}`, aYear < bYear)
-    if (aYear < bYear) { return -1 }
-    if (aYear > bYear) { return 1 }
-    return 0
-  })
-  console.log(`person template-notsorted`, notSorted)
-  console.log(`person template-sorted`, sortedD)
-
   // const topTenRanking = person.data.filter(dataObj => dataObj.rank > 0 && dataObj.rank <= 10).sort((a, b) => {
   //   if (a.year < b.year) { return 1 }
   //   if (a.year > b.year) { return -1 }
