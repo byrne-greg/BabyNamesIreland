@@ -13,8 +13,8 @@ const PersonInfoStatistics = ({ person }) => {
   const latestRecord = getLatestRecord(personData)
   const latestRecordedYear = latestRecord.year
   const latestRecordedRank = latestRecord.rank
-  const rankingChange = getRankingChangeFromPreviousRecord(personData)
-  const secondLatestRecordYear = getRecordBeforeLatest(personData).year
+  const rankingChange = getRankingChangeFromPreviousRecord(personData, person)
+  const secondLatestRecordYear = getPreviousRecordedYear(personData)
   const countChange = getCountChangeFromPreviousRecord(personData)
 
   const StatCard = ({ children }) => (
@@ -35,15 +35,19 @@ const PersonInfoStatistics = ({ person }) => {
         <Col >
           <StatCard><BirthNameCountStat name={person.name} lastRecordedYear={latestRecordedYear} count={latestRecord.total}/></StatCard>
         </Col>
-        <Col >
-          <StatCard><BirthNameCountChangeStat name={person.name} lastRecordedYear={secondLatestRecordYear} countChange={countChange.value} countChangeDirection={countChange.direction}/></StatCard>
-        </Col>
+        {secondLatestRecordYear && (
+          <Col >
+            <StatCard><BirthNameCountChangeStat name={person.name} lastRecordedYear={secondLatestRecordYear} countChange={countChange.value} countChangeDirection={countChange.direction}/></StatCard>
+          </Col>
+        )}
         <Col >
           <StatCard><BirthNameRankStat lastRecordedYear={latestRecordedYear} rank={latestRecordedRank} gender={person.gender} movementArrow={rankingChange.direction}/></StatCard>
         </Col>
-        <Col >
-          <StatCard><BirthNameRankChangeStat lastRecordedYear={secondLatestRecordYear} rankChange={rankingChange.value} rankChangeDirection={rankingChange.direction}/></StatCard>
-        </Col>
+        {secondLatestRecordYear && (
+          <Col >
+            <StatCard><BirthNameRankChangeStat lastRecordedYear={secondLatestRecordYear} rankChange={rankingChange.value} rankChangeDirection={rankingChange.direction}/></StatCard>
+          </Col>
+        )}
       </Row>
     </>
   )
@@ -65,14 +69,22 @@ function getLatestRecord (personData) {
   return sortPersonDataByYear(personData)[0]
 }
 
-function getRecordBeforeLatest (personData) {
-  return sortPersonDataByYear(personData)[1]
+function getPreviousRecordedYear (personData) {
+  const sortedData = sortPersonDataByYear(personData)
+  if (sortedData.length > 1) {
+    return sortedData[1].year
+  } else {
+    return null
+  }
 }
 
-function getRankingChangeFromPreviousRecord (personData) {
+function getRankingChangeFromPreviousRecord (personData, person) {
   let rankingMovement = constants.MOVEMENT.NONE
-  if (personData.length > 0) {
+  if (personData.length > 1) {
     const sortedRecords = sortPersonDataByYear(personData)
+    if (sortedRecords[1] === undefined) {
+      console.log(JSON.stringify(person, null, 2))
+    }
     const rankingChangeRaw = sortedRecords[0].rank - sortedRecords[1].rank
     if (rankingChangeRaw < 0) rankingMovement = constants.MOVEMENT.UP
     if (rankingChangeRaw > 0) rankingMovement = constants.MOVEMENT.DOWN
@@ -84,7 +96,7 @@ function getRankingChangeFromPreviousRecord (personData) {
 
 function getCountChangeFromPreviousRecord (personData) {
   let countMovement = constants.MOVEMENT.NONE
-  if (personData.length > 0) {
+  if (personData.length > 1) {
     const sortedRecords = sortPersonDataByYear(personData)
     const countChangeRaw = sortedRecords[0].total - sortedRecords[1].total
     if (countChangeRaw < 0) countMovement = constants.MOVEMENT.DOWN
