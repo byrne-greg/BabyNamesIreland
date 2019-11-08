@@ -64,7 +64,7 @@ function getRankingChangeFromPreviousRecord (personData) {
   const sortedRecords = sortPersonDataByYear(personData)
   const rankingChangeRaw = sortedRecords[0].rank - sortedRecords[1].rank
   let rankingMovement = constants.MOVEMENT.NONE
-  if (rankingChangeRaw < 0) rankingMovement = constants.MOVEMENT.DOWN
-  if (rankingChangeRaw > 0) rankingMovement = constants.MOVEMENT.UP
+  if (rankingChangeRaw < 0) rankingMovement = constants.MOVEMENT.UP
+  if (rankingChangeRaw > 0) rankingMovement = constants.MOVEMENT.DOWN
   return { value: Math.abs(rankingChangeRaw), direction: rankingMovement }
 }
