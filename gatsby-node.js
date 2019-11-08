@@ -76,7 +76,7 @@ async function getBirthNameDataFromCSO () {
 function sanitizeBirthNameData (birthNameData) {
   const sanitizedBirthNameData = [...birthNameData]
   // we are removing any person data that has zero for rank and total. this indicates the CSO didn't record or the data was noted as statistically unreliable
-  sanitizedBirthNameData.forEach(person => { person.data = person.data.filter(dataObj => dataObj.rank !== 0 && dataObj.total !== 0) })
+  // sanitizedBirthNameData.forEach(person => { person.data = person.data.filter(dataObj => dataObj.rank !== 0 && dataObj.total !== 0) })
   return sanitizedBirthNameData
 }
 
