@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Statistic, Icon } from 'antd'
 import constants from "./constants"
 
-const BirthNameRankChangeStat = ({ lastRecordedYear = `0000`, rankChange = 0, rankChangeDirection = constants.MOVEMENT.NONE }) => {
+const BirthNameRankChangeStat = ({ lastRecordedYear = null, rankChange = -1, rankChangeDirection = null }) => {
   let rankChangeDirectionIcon = <Icon type="minus" />
   let rankChangeDirectionColor = `#A9A9A9`
   let cardInfoMessage = `No change in popularity 🤔`

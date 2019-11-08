@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Statistic } from 'antd'
 
-const BirthNameRankStat = ({ lastRecordedYear = new Date().getFullYear(), rank = 0, gender = `General` }) => {
+const BirthNameRankStat = ({ lastRecordedYear = null, rank = -1, gender = null }) => {
   return (
 
     <Statistic
