@@ -1,7 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Row, Col, Card } from 'antd'
 import BirthNameRankStat from "./rank-stat"
 import BirthNameRankChangeStat from "./rank-change-stat"
+import GenderStat from './gender-stat'
 import constants from "./constants"
 
 const PersonInfoStatistics = ({ person }) => {
@@ -12,10 +14,28 @@ const PersonInfoStatistics = ({ person }) => {
   const rankingChange = getRankingChangeFromPreviousRecord(personData)
   const secondLatestRecordYear = getRecordBeforeLatest(personData).year
 
+  const StatCard = ({ children }) => (
+    <Card bordered={false}>
+      {children}
+    </Card>
+  )
+  StatCard.propTypes = {
+    children: PropTypes.node,
+  }
+
   return (
     <>
-      <BirthNameRankStat lastRecordedYear={latestRecordedYear} rank={latestRecordedRank} gender={person.gender} movementArrow={rankingChange.direction}/>
-      <BirthNameRankChangeStat lastRecordedYear={secondLatestRecordYear} rankChange={rankingChange.value} rankChangeDirection={rankingChange.direction}/>
+      <Row type='flex' justify="space-between" align="top">
+        <Col >
+          <StatCard><GenderStat gender={person.gender}/></StatCard>
+        </Col>
+        <Col >
+          <StatCard><BirthNameRankStat lastRecordedYear={latestRecordedYear} rank={latestRecordedRank} gender={person.gender} movementArrow={rankingChange.direction}/></StatCard>
+        </Col>
+        <Col >
+          <StatCard><BirthNameRankChangeStat lastRecordedYear={secondLatestRecordYear} rankChange={rankingChange.value} rankChangeDirection={rankingChange.direction}/></StatCard>
+        </Col>
+      </Row>
     </>
   )
 }

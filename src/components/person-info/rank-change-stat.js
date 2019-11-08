@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Card, Statistic, Icon } from 'antd'
+import { Statistic, Icon } from 'antd'
 import constants from "./constants"
 
 const BirthNameRankChangeStat = ({ lastRecordedYear = `0000`, rankChange = 0, rankChangeDirection = constants.MOVEMENT.NONE }) => {
@@ -11,15 +11,15 @@ const BirthNameRankChangeStat = ({ lastRecordedYear = `0000`, rankChange = 0, ra
   if (rankChangeDirection === constants.MOVEMENT.DOWN) { cardInfoMessage = `Not as popular 😟`; rankChangeDirectionIcon = <Icon type="arrow-down" />; rankChangeDirectionColor = `#cf1322` }
 
   return (
-    <Card>
-      <p>{cardInfoMessage}</p>
+    <>
       <Statistic
-        title={`Moved ${rankChangeDirection !== constants.MOVEMENT.NONE ? rankChangeDirection.toLowerCase() : `no places`} since ${lastRecordedYear}`}
+        title={`Moved ${rankChangeDirection !== constants.MOVEMENT.NONE ? rankChangeDirection.toLowerCase() : `no places`} in popularity since ${lastRecordedYear}`}
         value={rankChange}
         valueStyle={{ color: rankChangeDirectionColor }}
         prefix={rankChangeDirectionIcon}
       />
-    </Card>
+      <p>{cardInfoMessage}</p>
+    </>
   )
 }
 

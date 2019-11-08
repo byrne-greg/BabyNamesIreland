@@ -27,7 +27,6 @@ const PersonTemplate = ({ pageContext: { person } }) => {
     <Layout>
       <SEO title={person.name} />
       <PersonInfoPageTitle title={person.name}/>
-      <h2>{`CSO Registered as a ${person.gender} name`}</h2>
       <PersonInfoStatistics person={person} />
       <hr/>
       <BirthNameCountChart birthNameCountData={person.data}/>
