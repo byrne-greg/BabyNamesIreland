@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { Row, Col, Card } from 'antd'
 import BirthNameRankStat from "./rank-stat"
 import BirthNameRankChangeStat from "./rank-change-stat"
+import BirthNameCountStat from "./count-stat"
 import GenderStat from './gender-stat'
 import constants from "./constants"
 
@@ -28,6 +29,9 @@ const PersonInfoStatistics = ({ person }) => {
       <Row type='flex' justify="space-between" align="top">
         <Col >
           <StatCard><GenderStat gender={person.gender}/></StatCard>
+        </Col>
+        <Col >
+          <StatCard><BirthNameCountStat name={person.name} lastRecordedYear={latestRecordedYear} count={latestRecord.total}/></StatCard>
         </Col>
         <Col >
           <StatCard><BirthNameRankStat lastRecordedYear={latestRecordedYear} rank={latestRecordedRank} gender={person.gender} movementArrow={rankingChange.direction}/></StatCard>
