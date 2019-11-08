@@ -26,24 +26,22 @@ PersonInfoStatistics.propTypes = {
   person: PropTypes.shape({ name: PropTypes.string.isRequired, gender: PropTypes.string.isRequired, data: PropTypes.arrayOf(PropTypes.shape({ year: PropTypes.string })).isRequired }).isRequired,
 }
 
-function sortPersonDataByYear (isAscending, personData) {
+function sortPersonDataByYear (personData) {
   return personData.sort((a, b) => {
-    if (a.year < b.year) { return isAscending ? -1 : 1 }
-    if (a.year > b.year) { return isAscending ? 1 : -1 }
-    return 0
+    return Number(b.year) - Number(a.year)
   })
 }
 
 function getLatestRecord (personData) {
-  return sortPersonDataByYear(false, personData)[0]
+  return sortPersonDataByYear(personData)[0]
 }
 
 function getRecordBeforeLatest (personData) {
-  return sortPersonDataByYear(false, personData)[1]
+  return sortPersonDataByYear(personData)[1]
 }
 
 function getRankingChangeFromPreviousRecord (personData) {
-  const sortedRecords = sortPersonDataByYear(false, personData)
+  const sortedRecords = sortPersonDataByYear(personData)
   const rankingChangeRaw = sortedRecords[0].rank - sortedRecords[1].rank
   let rankingMovement = constants.MOVEMENT.NONE
   if (rankingChangeRaw < 0) rankingMovement = constants.MOVEMENT.DOWN
