@@ -5,32 +5,23 @@
  */
 // You can delete this file if you're not using it
 
-
-const getNameData = require("./src/api/csoBabyNameApiParser");
-const axios = require('axios');
-const crypto = require('crypto')
+const getNameData = require(`./src/api/csoBabyNameApiParser`)
+const crypto = require(`crypto`)
 
 // data fetching and transforming for gql queries
 exports.sourceNodes = async ({ actions }) => {
-    const { createNode } = actions;
-  
-   await createBirthNameNode(createNode);
-  
-    return;
-  }
+  const { createNode } = actions
 
-async function createBirthNameNode(createNode) {
- 
-    const birthNames = await getBirthNameDataFromCSO();   
-    
+  await createBirthNameNode(createNode)
+}
 
-    // map into these results and create nodes
-    birthNames.map((person, i) => {
+async function createBirthNameNode (createNode) {
+  const birthNames = await getBirthNameDataFromCSO()
 
-
-
-      // Create your node object
-      const birthNameNode = {
+  // map into these results and create nodes
+  birthNames.map((person, i) => {
+    // Create your node object
+    const birthNameNode = {
       // Required fields
       id: `${i}`,
       parent: `__SOURCE__`,
@@ -40,52 +31,51 @@ async function createBirthNameNode(createNode) {
         // but it is required
       },
       children: [],
-  
+
       // Other fields that you want to query with graphQl
       gender: person.gender,
       name: person.name,
       data: person.data,
-      
+
     }
-  
+
     // Get content digest of node. (Required field)
     const contentDigest = crypto
       .createHash(`md5`)
       .update(JSON.stringify(birthNameNode))
-      .digest(`hex`);
+      .digest(`hex`)
     // add it to userNode
-    birthNameNode.internal.contentDigest = contentDigest;
+    birthNameNode.internal.contentDigest = contentDigest
 
     // Create node with the gatsby createNode() API
-    createNode(birthNameNode);
-  });
+    createNode(birthNameNode)
+  })
 }
 
-async function getBirthNameDataFromCSO() {
-     // fetch raw data from the birth name CSO statbank api
+async function getBirthNameDataFromCSO () {
+  // fetch raw data from the birth name CSO statbank api
   const fetchBirthRegistrationBoysNames = () => getNameData(
-    "https://www.cso.ie/StatbankServices/StatbankServices.svc/jsonservice/responseinstance/VSA10",
-    "Male"
-  );
+    `https://www.cso.ie/StatbankServices/StatbankServices.svc/jsonservice/responseinstance/VSA10`,
+    `Male`,
+  )
 
   const fetchBirthRegistrationGirlsNames = () => getNameData(
-    "https://www.cso.ie/StatbankServices/StatbankServices.svc/jsonservice/responseinstance/VSA11",
-    "Female"
-  );
+    `https://www.cso.ie/StatbankServices/StatbankServices.svc/jsonservice/responseinstance/VSA11`,
+    `Female`,
+  )
 
   // // await for results
   // TODO why does this not work?
   // const babyNames = await axios.all(fetchBirthRegistrationBoysNames(), fetchBirthRegistrationGirlsNames()).then(result => { return [...result[0], ...result[1]]});
-  const res1 = await fetchBirthRegistrationBoysNames();
-  const res2 = await fetchBirthRegistrationGirlsNames();
-  const birthNames = [ ...res1, ...res2];
-  return birthNames;
+  const res1 = await fetchBirthRegistrationBoysNames()
+  const res2 = await fetchBirthRegistrationGirlsNames()
+  const birthNames = [...res1, ...res2]
+  return birthNames
 }
 
-
 exports.createPages = async ({ graphql, actions }) => {
-    const { createPage } = actions
-    const birthNames = await graphql(`
+  const { createPage } = actions
+  const birthNames = await graphql(`
       query {
         allBirthNames {
           nodes {
@@ -98,12 +88,12 @@ exports.createPages = async ({ graphql, actions }) => {
             }
           }
         }
-      }`);
-      birthNames.data.allBirthNames.nodes.forEach(person => {
-      createPage({
-        path: `/search/${person.name}`,
-        component: require.resolve(`./src/templates/person-template.js`),
-        context: { person },
-      })
+      }`)
+  birthNames.data.allBirthNames.nodes.forEach(person => {
+    createPage({
+      path: `/search/${person.name}`,
+      component: require.resolve(`./src/templates/person-info-page.js`),
+      context: { person },
     })
-  }
+  })
+}
