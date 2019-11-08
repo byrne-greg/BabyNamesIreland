@@ -23,5 +23,5 @@ const BirthNameRankChart = ({ birthNameRankData }) => {
 export default BirthNameRankChart
 
 BirthNameRankChart.propTypes = {
-  birthNameRankData: PropTypes.arrayOf(PropTypes.shape({ year: PropTypes.string, total: PropTypes.string })).isRequired,
+  birthNameRankData: PropTypes.arrayOf(PropTypes.shape({ year: PropTypes.string, total: PropTypes.number })).isRequired,
 }

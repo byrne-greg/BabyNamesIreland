@@ -4,12 +4,13 @@ import { FlexibleWidthXYPlot, LineSeries, LabelSeries, XAxis, YAxis, VerticalGri
 
 const BirthNameCountChart = ({ birthNameCountData }) => {
   const birthNameCountChartData = birthNameCountData.map(dataObj => { return { x: dataObj.year, y: dataObj.total } })
+  console.log(birthNameCountChartData)
 
   return (
     <FlexibleWidthXYPlot xType="ordinal" height={500} margin={{ left: 100 }} >
       <VerticalGridLines />
       <HorizontalGridLines />
-      <XAxis title="year" tickPadding={35} tickSizeInner={500} tickLabelAngle={90} tickTotal={birthNameCountChartData.length} />
+      <XAxis title="year" tickPadding={35} tickSizeInner={500} tickLabelAngle={90} />
       <YAxis title="births registered"/>
       <LineSeries data={birthNameCountChartData} />
       <LabelSeries data={birthNameCountChartData} getLabel={d => `${d.y}`} style={{ fontSize: `0.5rem` }} />
@@ -20,5 +21,5 @@ const BirthNameCountChart = ({ birthNameCountData }) => {
 export default BirthNameCountChart
 
 BirthNameCountChart.propTypes = {
-  birthNameCountData: PropTypes.arrayOf(PropTypes.shape({ year: PropTypes.string, total: PropTypes.string })).isRequired,
+  birthNameCountData: PropTypes.arrayOf(PropTypes.shape({ year: PropTypes.string, total: PropTypes.number })).isRequired,
 }
