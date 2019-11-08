@@ -69,8 +69,15 @@ async function getBirthNameDataFromCSO () {
   // const babyNames = await axios.all(fetchBirthRegistrationBoysNames(), fetchBirthRegistrationGirlsNames()).then(result => { return [...result[0], ...result[1]]});
   const res1 = await fetchBirthRegistrationBoysNames()
   const res2 = await fetchBirthRegistrationGirlsNames()
-  const birthNames = [...res1, ...res2]
+  const birthNames = sanitizeBirthNameData([...res1, ...res2])
   return birthNames
+}
+
+function sanitizeBirthNameData (birthNameData) {
+  const sanitizedBirthNameData = [...birthNameData]
+  // we are removing any person data that has zero for rank and total. this indicates the CSO didn't record or the data was noted as statistically unreliable
+  sanitizedBirthNameData.forEach(person => { person.data = person.data.filter(dataObj => dataObj.rank !== 0 && dataObj.total !== 0) })
+  return sanitizedBirthNameData
 }
 
 exports.createPages = async ({ graphql, actions }) => {
