@@ -6,6 +6,7 @@ import BirthNameRankChangeStat from "./rank-change-stat"
 import BirthNameCountStat from "./count-stat"
 import BirthNameCountChangeStat from "./count-change-stat"
 import GenderStat from './gender-stat'
+import LastRecordedYearStat from './last-recorded-year-stat'
 import constants from "./constants"
 
 const PersonInfoStatistics = ({ person }) => {
@@ -30,24 +31,24 @@ const PersonInfoStatistics = ({ person }) => {
     <>
       <Row type='flex' justify="space-between" align="top">
         <Col >
-          <StatCard><GenderStat gender={person.gender}/></StatCard>
+          <StatCard><GenderStat gender={person.gender}/><LastRecordedYearStat year={latestRecordedYear} style={{ paddingTop: `1rem` }}/></StatCard>
         </Col>
         <Col >
-          <StatCard><BirthNameCountStat name={person.name} lastRecordedYear={latestRecordedYear} count={latestRecord.total}/></StatCard>
+          <StatCard><BirthNameCountStat name={person.name} lastRecordedYear={latestRecordedYear} count={latestRecord.total}/>
+            {secondLatestRecordYear && (
+              <BirthNameCountChangeStat name={person.name} lastRecordedYear={secondLatestRecordYear} countChange={countChange.value} countChangeDirection={countChange.direction} style={{ paddingTop: `1rem` }}/>
+            )}
+          </StatCard>
         </Col>
-        {secondLatestRecordYear && (
-          <Col >
-            <StatCard><BirthNameCountChangeStat name={person.name} lastRecordedYear={secondLatestRecordYear} countChange={countChange.value} countChangeDirection={countChange.direction}/></StatCard>
-          </Col>
-        )}
         <Col >
-          <StatCard><BirthNameRankStat lastRecordedYear={latestRecordedYear} rank={latestRecordedRank} gender={person.gender} movementArrow={rankingChange.direction}/></StatCard>
+          <StatCard>
+            <BirthNameRankStat lastRecordedYear={latestRecordedYear} rank={latestRecordedRank} gender={person.gender} movementArrow={rankingChange.direction}/>
+            {secondLatestRecordYear && (
+              <BirthNameRankChangeStat lastRecordedYear={secondLatestRecordYear} rankChange={rankingChange.value} rankChangeDirection={rankingChange.direction} style={{ paddingTop: `1rem` }}/>
+            )}
+
+          </StatCard>
         </Col>
-        {secondLatestRecordYear && (
-          <Col >
-            <StatCard><BirthNameRankChangeStat lastRecordedYear={secondLatestRecordYear} rankChange={rankingChange.value} rankChangeDirection={rankingChange.direction}/></StatCard>
-          </Col>
-        )}
       </Row>
     </>
   )
