@@ -8,7 +8,7 @@ const BirthNameCountChangeStat = ({ lastRecordedYear = null, name = null, countC
   let countChangeDirectionColor = `#A9A9A9`
   let cardInfoMessage = `Same amount of ${name}'s 🤔`
   if (countChangeDirection === constants.MOVEMENT.UP) { cardInfoMessage = `More ${name}'s in Ireland! 😎`; countChangeDirectionIcon = <Icon type="arrow-up" />; countChangeDirectionColor = `#3f8600` }
-  if (countChangeDirection === constants.MOVEMENT.DOWN) { cardInfoMessage = `Not as many ${name}'s in the wild 😟`; countChangeDirectionIcon = <Icon type="arrow-down" />; countChangeDirectionColor = `#cf1322` }
+  if (countChangeDirection === constants.MOVEMENT.DOWN) { cardInfoMessage = `Not as many ${name}'s in the Ireland 😟`; countChangeDirectionIcon = <Icon type="arrow-down" />; countChangeDirectionColor = `#cf1322` }
 
   return (
     <>
