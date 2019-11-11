@@ -9,10 +9,10 @@ const BirthNameRankChart = ({ birthNameRankData }) => {
   const nameRankMin = Math.min(...rankings)
 
   return (
-    <FlexibleWidthXYPlot xType="ordinal" height={500} margin={{ left: 100 }} yDomain={[nameRankMax, nameRankMin]}>
+    <FlexibleWidthXYPlot xType="ordinal" height={500} yDomain={[nameRankMax, nameRankMin]}>
       <VerticalGridLines />
       <HorizontalGridLines />
-      <XAxis title="year" tickPadding={35} tickSizeInner={500} tickLabelAngle={90} tickTotal={birthNameRankChartData.length} />
+      <XAxis title="year" tickPadding={35} tickSizeInner={500} tickLabelAngle={90}/>
       <YAxis title="rankings"/>
       <LineMarkSeries data={birthNameRankChartData} />
       <LabelSeries data={birthNameRankChartData} getLabel={d => `${d.y}`} style={{ fontSize: `0.5rem` }} />
