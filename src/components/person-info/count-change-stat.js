@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Statistic, Icon } from 'antd'
 import constants from "./constants"
 
-const BirthNameCountChangeStat = ({ lastRecordedYear = null, name = null, countChange = -1, countChangeDirection = null }) => {
+const BirthNameCountChangeStat = ({ lastRecordedYear = null, name = null, countChange = -1, countChangeDirection = null, style = {} }) => {
   let countChangeDirectionIcon = <Icon type="minus" />
   let countChangeDirectionColor = `#A9A9A9`
   let cardInfoMessage = `Same amount of ${name}'s 🤔`
@@ -17,6 +17,7 @@ const BirthNameCountChangeStat = ({ lastRecordedYear = null, name = null, countC
         value={countChange}
         valueStyle={{ color: countChangeDirectionColor }}
         prefix={countChangeDirectionIcon}
+        style={style}
       />
       <p>{cardInfoMessage}</p>
     </>
@@ -30,4 +31,5 @@ BirthNameCountChangeStat.propTypes = {
   name: PropTypes.string.isRequired,
   countChange: PropTypes.number.isRequired,
   countChangeDirection: PropTypes.string,
+  style: PropTypes.object,
 }
