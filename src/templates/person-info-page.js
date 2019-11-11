@@ -29,10 +29,10 @@ const PersonTemplate = ({ pageContext: { person } }) => {
       <PersonInfoPageTitle title={person.name}/>
       <PersonInfoStatistics person={person} />
       <hr/>
-      <BirthNameCountChart birthNameCountData={person.data}/>
-      <hr/>
-      <BirthNameRankChart birthNameRankData={person.data} />
-      <hr/>
+      <div style={{ minWidth: `350px` }}>
+        <BirthNameCountChart birthNameCountData={person.data}/>
+        <BirthNameRankChart birthNameRankData={person.data} />
+      </div>
       <Link to="/search">Back</Link>{` `}<Link to="/about">Home</Link>
     </Layout>
   )
