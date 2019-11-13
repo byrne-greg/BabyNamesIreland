@@ -3,13 +3,15 @@ import PropTypes from 'prop-types'
 import { Row, Col, Card } from 'antd'
 import BirthNameRankStat from "./rank-stat"
 import BirthNameRankChangeStat from "./rank-change-stat"
+import BirthNameHighestRankStat from './rank-highest-stat'
+import BirthNameLowestRankStat from './rank-lowest-stat'
 import BirthNameCountStat from "./count-stat"
 import BirthNameCountChangeStat from "./count-change-stat"
 import BirthNameHighestCountStat from './count-highest-stat'
+import BirthNameLowestCountStat from './count-lowest-stat'
 import GenderStat from './gender-stat'
 import LastRecordedYearStat from './last-recorded-year-stat'
 import constants from "./constants"
-import BirthNameHighestRankStat from './rank-highest-stat'
 
 const PersonInfoStatistics = ({ person }) => {
   const personData = person.data
@@ -41,6 +43,7 @@ const PersonInfoStatistics = ({ person }) => {
               <BirthNameCountChangeStat name={person.name} recordedYear={secondLatestRecordYear} countChange={countChange.value} countChangeDirection={countChange.direction} style={{ paddingTop: `1rem` }}/>
             )}
             <BirthNameHighestCountStat name={person.name} data={person.data} style={{ paddingTop: `1rem` }}/>
+            <BirthNameLowestCountStat name={person.name} data={person.data} style={{ paddingTop: `1rem` }}/>
           </StatCard>
         </Col>
         <Col >
@@ -50,6 +53,7 @@ const PersonInfoStatistics = ({ person }) => {
               <BirthNameRankChangeStat recordedYear={secondLatestRecordYear} rankChange={rankingChange.value} rankChangeDirection={rankingChange.direction} style={{ paddingTop: `1rem` }}/>
             )}
             <BirthNameHighestRankStat name={person.name} data={person.data} style={{ paddingTop: `1rem` }}/>
+            <BirthNameLowestRankStat name={person.name} data={person.data} style={{ paddingTop: `1rem` }}/>
           </StatCard>
         </Col>
       </Row>
