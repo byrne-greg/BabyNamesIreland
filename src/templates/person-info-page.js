@@ -29,7 +29,7 @@ const PersonTemplate = ({ pageContext: { person } }) => {
       <PersonInfoPageTitle title={person.name}/>
       <PersonInfoStatistics person={person} />
       <hr/>
-      <div style={{ minWidth: `350px` }}>
+      <div>
         <BirthNameCountChart birthNameCountData={person.data}/>
         <BirthNameRankChart birthNameRankData={person.data} />
       </div>

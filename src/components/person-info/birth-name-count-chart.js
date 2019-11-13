@@ -19,7 +19,7 @@ const BirthNameCountChart = ({ birthNameCountData }) => {
       <XAxis title="year" tickPadding={35} tickSizeInner={500} tickLabelAngle={90} />
       <YAxis title="births registered"/>
       <LineMarkSeries data={birthNameCountChartData} />
-      <LabelSeries data={birthNameCountChartData} getLabel={d => `${d.y}`} style={{ fontSize: `0.5rem` }} />
+      {/* <LabelSeries data={birthNameCountChartData} getLabel={d => `${d.y}`} style={{ fontSize: `0.5rem` }} /> */}
     </FlexibleWidthXYPlot>
   )
 }

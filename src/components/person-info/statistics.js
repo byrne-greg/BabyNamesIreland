@@ -5,9 +5,11 @@ import BirthNameRankStat from "./rank-stat"
 import BirthNameRankChangeStat from "./rank-change-stat"
 import BirthNameCountStat from "./count-stat"
 import BirthNameCountChangeStat from "./count-change-stat"
+import BirthNameHighestCountStat from './count-highest-stat'
 import GenderStat from './gender-stat'
 import LastRecordedYearStat from './last-recorded-year-stat'
 import constants from "./constants"
+import BirthNameHighestRankStat from './rank-highest-stat'
 
 const PersonInfoStatistics = ({ person }) => {
   const personData = person.data
@@ -36,17 +38,18 @@ const PersonInfoStatistics = ({ person }) => {
         <Col >
           <StatCard><BirthNameCountStat name={person.name} lastRecordedYear={latestRecordedYear} count={latestRecord.total}/>
             {secondLatestRecordYear && (
-              <BirthNameCountChangeStat name={person.name} lastRecordedYear={secondLatestRecordYear} countChange={countChange.value} countChangeDirection={countChange.direction} style={{ paddingTop: `1rem` }}/>
+              <BirthNameCountChangeStat name={person.name} recordedYear={secondLatestRecordYear} countChange={countChange.value} countChangeDirection={countChange.direction} style={{ paddingTop: `1rem` }}/>
             )}
+            <BirthNameHighestCountStat name={person.name} data={person.data} style={{ paddingTop: `1rem` }}/>
           </StatCard>
         </Col>
         <Col >
           <StatCard>
             <BirthNameRankStat lastRecordedYear={latestRecordedYear} rank={latestRecordedRank} gender={person.gender} movementArrow={rankingChange.direction}/>
             {secondLatestRecordYear && (
-              <BirthNameRankChangeStat lastRecordedYear={secondLatestRecordYear} rankChange={rankingChange.value} rankChangeDirection={rankingChange.direction} style={{ paddingTop: `1rem` }}/>
+              <BirthNameRankChangeStat recordedYear={secondLatestRecordYear} rankChange={rankingChange.value} rankChangeDirection={rankingChange.direction} style={{ paddingTop: `1rem` }}/>
             )}
-
+            <BirthNameHighestRankStat name={person.name} data={person.data} style={{ paddingTop: `1rem` }}/>
           </StatCard>
         </Col>
       </Row>
