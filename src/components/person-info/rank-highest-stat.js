@@ -4,12 +4,12 @@ import { Statistic } from 'antd'
 import utils from './utils'
 
 const BirthNameHighestRankStat = ({ name = null, data = [], style = {} }) => {
-  const highestCountRecord = data.reduce((acc, currentRecord) => currentRecord.rank < acc.rank ? currentRecord : acc)
+  const highestRankRecord = data.reduce((acc, currentRecord) => currentRecord.rank < acc.rank ? currentRecord : acc)
 
   return (
     <Statistic
       title={`Most popular year for ${name}`}
-      value={`${highestCountRecord.rank}${utils.getRankingSuffix(highestCountRecord.rank)} in ${highestCountRecord.year}`}
+      value={`${highestRankRecord.rank}${utils.getRankingSuffix(highestRankRecord.rank)} in ${highestRankRecord.year}`}
       style={style}
     />
 
