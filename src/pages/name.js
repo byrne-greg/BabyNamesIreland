@@ -38,7 +38,7 @@ const SearchPage = ({ data }) => {
 
   return (
     <Layout>
-      <SEO title="Search" />
+      <SEO title="Search for Irish baby name" />
       <Input.Search
         placeholder="type name here"
         size="large"
@@ -67,7 +67,7 @@ const SearchPage = ({ data }) => {
                   ? { backgroundColor: `#ffd6e7` }
                   : { backgroundColor: `#bae7ff` }
               }
-              onClick={() => navigate(`/search/${item.name}`)}
+              onClick={() => navigate(`/name/${item.name}`)}
             >
               <Card.Meta title={item.name} description={item.gender} />
             </Card>
