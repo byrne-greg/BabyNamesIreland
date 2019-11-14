@@ -6,9 +6,8 @@ import constants from "./constants"
 const BirthNameRankChangeStat = ({ recordedYear = null, rankChange = -1, rankChangeDirection = null, style = {} }) => {
   let rankChangeDirectionIcon = <Icon type="minus" />
   let rankChangeDirectionColor = `#A9A9A9`
-  let cardInfoMessage = `No change in popularity 🤔`
-  if (rankChangeDirection === constants.MOVEMENT.UP) { cardInfoMessage = `Rising popularity! 😎`; rankChangeDirectionIcon = <Icon type="arrow-up" />; rankChangeDirectionColor = `#3f8600` }
-  if (rankChangeDirection === constants.MOVEMENT.DOWN) { cardInfoMessage = `Not as popular 😟`; rankChangeDirectionIcon = <Icon type="arrow-down" />; rankChangeDirectionColor = `#cf1322` }
+  if (rankChangeDirection === constants.MOVEMENT.UP) { rankChangeDirectionIcon = <Icon type="arrow-up" />; rankChangeDirectionColor = `#3f8600` }
+  if (rankChangeDirection === constants.MOVEMENT.DOWN) { rankChangeDirectionIcon = <Icon type="arrow-down" />; rankChangeDirectionColor = `#cf1322` }
 
   return (
     <>
@@ -19,7 +18,6 @@ const BirthNameRankChangeStat = ({ recordedYear = null, rankChange = -1, rankCha
         prefix={rankChangeDirectionIcon}
         style={style}
       />
-      <p>{cardInfoMessage}</p>
     </>
   )
 }

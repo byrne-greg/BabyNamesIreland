@@ -6,9 +6,8 @@ import constants from "./constants"
 const BirthNameCountChangeStat = ({ recordedYear = null, name = null, countChange = -1, countChangeDirection = null, style = {} }) => {
   let countChangeDirectionIcon = <Icon type="minus" />
   let countChangeDirectionColor = `#A9A9A9`
-  let cardInfoMessage = `Same amount of ${name}'s 🤔`
-  if (countChangeDirection === constants.MOVEMENT.UP) { cardInfoMessage = `More ${name}'s in Ireland! 😎`; countChangeDirectionIcon = <Icon type="arrow-up" />; countChangeDirectionColor = `#3f8600` }
-  if (countChangeDirection === constants.MOVEMENT.DOWN) { cardInfoMessage = `Not as many ${name}'s in the Ireland 😟`; countChangeDirectionIcon = <Icon type="arrow-down" />; countChangeDirectionColor = `#cf1322` }
+  if (countChangeDirection === constants.MOVEMENT.UP) { countChangeDirectionIcon = <Icon type="arrow-up" />; countChangeDirectionColor = `#3f8600` }
+  if (countChangeDirection === constants.MOVEMENT.DOWN) { countChangeDirectionIcon = <Icon type="arrow-down" />; countChangeDirectionColor = `#cf1322` }
 
   return (
     <>
@@ -19,7 +18,6 @@ const BirthNameCountChangeStat = ({ recordedYear = null, name = null, countChang
         prefix={countChangeDirectionIcon}
         style={style}
       />
-      <p>{cardInfoMessage}</p>
     </>
   )
 }

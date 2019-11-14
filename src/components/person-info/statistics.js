@@ -33,27 +33,58 @@ const PersonInfoStatistics = ({ person }) => {
 
   return (
     <>
+      <Row type='flex' justify="space-around" align="top">
+        <Col >
+          <StatCard><GenderStat gender={person.gender}/></StatCard>
+        </Col>
+        <Col>
+          <StatCard><LastRecordedYearStat year={latestRecordedYear}/></StatCard>
+        </Col>
+      </Row>
       <Row type='flex' justify="space-between" align="top">
         <Col >
-          <StatCard><GenderStat gender={person.gender}/><LastRecordedYearStat year={latestRecordedYear} style={{ paddingTop: `1rem` }}/></StatCard>
-        </Col>
-        <Col >
-          <StatCard><BirthNameCountStat name={person.name} lastRecordedYear={latestRecordedYear} count={latestRecord.total}/>
-            {secondLatestRecordYear && (
-              <BirthNameCountChangeStat name={person.name} recordedYear={secondLatestRecordYear} countChange={countChange.value} countChangeDirection={countChange.direction} style={{ paddingTop: `1rem` }}/>
-            )}
-            <BirthNameHighestCountStat name={person.name} data={person.data} style={{ paddingTop: `1rem` }}/>
-            <BirthNameLowestCountStat name={person.name} data={person.data} style={{ paddingTop: `1rem` }}/>
+          <StatCard>
+            <BirthNameCountStat name={person.name} lastRecordedYear={latestRecordedYear} count={latestRecord.total}/>
           </StatCard>
         </Col>
+        {secondLatestRecordYear && (
+          <Col>
+            <StatCard>
+              <BirthNameCountChangeStat name={person.name} recordedYear={secondLatestRecordYear} countChange={countChange.value} countChangeDirection={countChange.direction} />
+            </StatCard>
+          </Col>
+        )}
+        <Col>
+          <StatCard>
+            <BirthNameHighestCountStat name={person.name} data={person.data} />
+          </StatCard>
+        </Col>
+        <Col>
+          <StatCard>
+            <BirthNameLowestCountStat name={person.name} data={person.data}/>
+          </StatCard>
+        </Col>
+      </Row>
+      <Row type='flex' justify="space-between" align="top">
         <Col >
           <StatCard>
             <BirthNameRankStat lastRecordedYear={latestRecordedYear} rank={latestRecordedRank} gender={person.gender} movementArrow={rankingChange.direction}/>
-            {secondLatestRecordYear && (
-              <BirthNameRankChangeStat recordedYear={secondLatestRecordYear} rankChange={rankingChange.value} rankChangeDirection={rankingChange.direction} style={{ paddingTop: `1rem` }}/>
-            )}
-            <BirthNameHighestRankStat name={person.name} data={person.data} style={{ paddingTop: `1rem` }}/>
-            <BirthNameLowestRankStat name={person.name} data={person.data} style={{ paddingTop: `1rem` }}/>
+          </StatCard>
+        </Col>
+        {secondLatestRecordYear && (
+          <Col>
+            <StatCard>
+              <BirthNameRankChangeStat recordedYear={secondLatestRecordYear} rankChange={rankingChange.value} rankChangeDirection={rankingChange.direction}/>
+            </StatCard>
+          </Col>)}
+        <Col>
+          <StatCard>
+            <BirthNameHighestRankStat name={person.name} data={person.data} />
+          </StatCard>
+        </Col>
+        <Col>
+          <StatCard>
+            <BirthNameLowestRankStat name={person.name} data={person.data} />
           </StatCard>
         </Col>
       </Row>

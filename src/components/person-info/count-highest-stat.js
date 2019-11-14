@@ -7,8 +7,8 @@ const BirthNameHighestCountStat = ({ name = null, data = [], style = {} }) => {
 
   return (
     <Statistic
-      title={`Year with most amount of ${name}'s`}
-      value={`${highestCountRecord.year} with ${highestCountRecord.total} registers`}
+      title={`Year with most ${name}'s`}
+      value={`${highestCountRecord.total} in ${highestCountRecord.year}`}
       style={style}
     />
 

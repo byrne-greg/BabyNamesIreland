@@ -7,8 +7,8 @@ const BirthNameLowestCountStat = ({ name = null, data = [], style = {} }) => {
 
   return (
     <Statistic
-      title={`Year with least amount of ${name}'s`}
-      value={`${lowestCountRecord.year} with ${lowestCountRecord.total} registers`}
+      title={`Year with least ${name}'s`}
+      value={`${lowestCountRecord.total} in ${lowestCountRecord.year}`}
       style={style}
     />
 
