@@ -98,7 +98,7 @@ exports.createPages = async ({ graphql, actions }) => {
       }`)
   birthNames.data.allBirthNames.nodes.forEach(person => {
     createPage({
-      path: `/search/${person.name}`,
+      path: `/name/${person.name}`,
       component: require.resolve(`./src/templates/person-info-page.js`),
       context: { person },
     })
