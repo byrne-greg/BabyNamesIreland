@@ -46,19 +46,11 @@ const SearchPage = ({ data }) => {
         onSearch={enteredValue => { filterNameList(enteredValue) }}
         onChange={event => { filterNameList(event.target.value) }}
         onClick={event => { event.target.value = ``; filterNameList(``) }}
+        style={{ margin: `1rem` }}
       />
       <List
         grid={{ gutter: 16, xs: 2, sm: 3, xl: 4 }}
         dataSource={currentNameList}
-        pagination={{
-          position: `both`,
-          simple: true,
-          defaultCurrent: 1,
-          defaultPageSize: 40,
-          pageSize: 40,
-          total: currentNameList.length,
-          style: { margin: `10px` },
-        }}
         renderItem={item => (
           <List.Item>
             <Card
