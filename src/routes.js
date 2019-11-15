@@ -1,5 +1,5 @@
 export default {
   HOME: `/`,
-  ABOUT: `about`,
-  SEARCH_NAME: `name`,
+  ABOUT: `/about`,
+  SEARCH_NAME: `/name`,
 }

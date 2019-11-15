@@ -4,6 +4,7 @@ import { List, Card, Input } from 'antd'
 import { graphql, navigate } from 'gatsby'
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import routes from "../routes"
 
 export const query = graphql`
   query SearchPageQuery {
@@ -43,7 +44,7 @@ const SearchPage = ({ data }) => {
         placeholder="type name here"
         size="large"
         enterButton
-        onSearch={enteredValue => { filterNameList(enteredValue) }}
+        onSearch={enteredValue => { filterNameList(enteredValue); if (currentNameList.length === 1) { navigate(`${routes.SEARCH_NAME}/${currentNameList[0].name}`) } }}
         onChange={event => { filterNameList(event.target.value) }}
         onClick={event => { event.target.value = ``; filterNameList(``) }}
         style={{ margin: `1rem` }}
