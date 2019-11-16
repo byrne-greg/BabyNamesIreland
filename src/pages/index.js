@@ -19,27 +19,35 @@ export const query = graphql`
   }  
 `
 
-const IndexPage = ({ data }) => (
-  <Layout>
-    <SEO title="Home" />
-    <h1>The Popular Names of Ireland</h1>
-    <p>Some descriptive (or perhaps minimalist) blurb about the purpose of this corner of the internet</p>
-    <Row>
-      <Col>
-        <Card>Top Male Names</Card>
-      </Col>
-      <Col>
-        <Card>Top Female Names</Card>
-      </Col>
-    </Row>
-    <LinkButton to={routes.SEARCH_NAME}>Start Searching</LinkButton>
-    <LinkButton to={routes.ABOUT}>About</LinkButton>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <hr/>
+const IndexPage = ({ data }) => {
+  return (
+    <Layout>
+      <SEO title="Home" />
+      {/* Hero */}
+      <h1>The Popular Names of Ireland</h1>
+      {/* Blurb */}
+      <p>Some descriptive (or perhaps minimalist) blurb about the purpose of this corner of the internet</p>
+      <LinkButton to={routes.SEARCH_NAME}>Start Searching</LinkButton>
+      <LinkButton to={routes.ABOUT}>About</LinkButton>
+      {/* Top Stats */}
+      <Row type="flex" justify="space-around">
+        <Col>
+          <Card>Top Male Names</Card>
+        </Col>
+        <Col>
+          <Card>Top Female Names</Card>
+        </Col>
+      </Row>
+      {/* Search */}
 
-  </Layout>
-)
+
+
+      {/* <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
+        <Image />
+      </div>
+       */}
+    </Layout>
+  )
+}
 
 export default IndexPage
