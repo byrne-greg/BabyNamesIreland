@@ -11,7 +11,7 @@ import BirthNameHighestCountStat from './count-highest-stat'
 import BirthNameLowestCountStat from './count-lowest-stat'
 import GenderStat from './gender-stat'
 import LastRecordedYearStat from './last-recorded-year-stat'
-import constants from "./constants"
+import enums from "../../enums"
 
 const PersonInfoStatistics = ({ person }) => {
   const personData = person.data
@@ -118,15 +118,15 @@ function getPreviousRecordedYear (personData) {
 }
 
 function getRankingChangeFromPreviousRecord (personData, person) {
-  let rankingMovement = constants.MOVEMENT.NONE
+  let rankingMovement = enums.MOVEMENT.NONE
   if (personData.length > 1) {
     const sortedRecords = sortPersonDataByYear(personData)
     if (sortedRecords[1] === undefined) {
       console.log(JSON.stringify(person, null, 2))
     }
     const rankingChangeRaw = sortedRecords[0].rank - sortedRecords[1].rank
-    if (rankingChangeRaw < 0) rankingMovement = constants.MOVEMENT.UP
-    if (rankingChangeRaw > 0) rankingMovement = constants.MOVEMENT.DOWN
+    if (rankingChangeRaw < 0) rankingMovement = enums.MOVEMENT.UP
+    if (rankingChangeRaw > 0) rankingMovement = enums.MOVEMENT.DOWN
     return { value: Math.abs(rankingChangeRaw), direction: rankingMovement }
   } else {
     return { value: 0, direction: rankingMovement }
@@ -134,12 +134,12 @@ function getRankingChangeFromPreviousRecord (personData, person) {
 }
 
 function getCountChangeFromPreviousRecord (personData) {
-  let countMovement = constants.MOVEMENT.NONE
+  let countMovement = enums.MOVEMENT.NONE
   if (personData.length > 1) {
     const sortedRecords = sortPersonDataByYear(personData)
     const countChangeRaw = sortedRecords[0].total - sortedRecords[1].total
-    if (countChangeRaw < 0) countMovement = constants.MOVEMENT.DOWN
-    if (countChangeRaw > 0) countMovement = constants.MOVEMENT.UP
+    if (countChangeRaw < 0) countMovement = enums.MOVEMENT.DOWN
+    if (countChangeRaw > 0) countMovement = enums.MOVEMENT.UP
     return { value: Math.abs(countChangeRaw), direction: countMovement }
   } else {
     return { value: 0, direction: countMovement }

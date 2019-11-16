@@ -1,18 +1,18 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Statistic, Icon } from 'antd'
-import constants from "./constants"
+import enums from "../../enums"
 
 const BirthNameRankChangeStat = ({ recordedYear = null, rankChange = -1, rankChangeDirection = null, style = {} }) => {
   let rankChangeDirectionIcon = <Icon type="minus" />
   let rankChangeDirectionColor = `#A9A9A9`
-  if (rankChangeDirection === constants.MOVEMENT.UP) { rankChangeDirectionIcon = <Icon type="arrow-up" />; rankChangeDirectionColor = `#3f8600` }
-  if (rankChangeDirection === constants.MOVEMENT.DOWN) { rankChangeDirectionIcon = <Icon type="arrow-down" />; rankChangeDirectionColor = `#cf1322` }
+  if (rankChangeDirection === enums.MOVEMENT.UP) { rankChangeDirectionIcon = <Icon type="arrow-up" />; rankChangeDirectionColor = `#3f8600` }
+  if (rankChangeDirection === enums.MOVEMENT.DOWN) { rankChangeDirectionIcon = <Icon type="arrow-down" />; rankChangeDirectionColor = `#cf1322` }
 
   return (
     <>
       <Statistic
-        title={`Moved ${rankChangeDirection !== constants.MOVEMENT.NONE ? rankChangeDirection.toLowerCase() : `no places`} in popularity since ${recordedYear}`}
+        title={`Moved ${rankChangeDirection !== enums.MOVEMENT.NONE ? rankChangeDirection.toLowerCase() : `no places`} in popularity since ${recordedYear}`}
         value={rankChange}
         valueStyle={{ color: rankChangeDirectionColor }}
         prefix={rankChangeDirectionIcon}

@@ -5,6 +5,8 @@ import { graphql, navigate } from 'gatsby'
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import routes from "../routes"
+import styleColors from "../style-colors"
+import { isFemale } from "../utils"
 
 export const query = graphql`
   query SearchPageQuery {
@@ -37,6 +39,17 @@ const SearchPage = ({ data }) => {
     setCurrentNameList(filteredNameList)
   }
 
+  const getCardStyle = (gender) => {
+    const style = {
+      borderRadius: `1.5rem`,
+    }
+    isFemale(gender)
+      ? style.backgroundColor = styleColors.CARD.FEMALE_BACKGROUND_COLOR
+      : style.backgroundColor = styleColors.CARD.MALE_BACKGROUND_COLOR
+
+    return style
+  }
+
   return (
     <Layout>
       <SEO title="Search for Irish baby name" />
@@ -55,11 +68,7 @@ const SearchPage = ({ data }) => {
         renderItem={item => (
           <List.Item>
             <Card
-              style={
-                item.gender.toUpperCase() === `FEMALE`
-                  ? { backgroundColor: `#ffd6e7` }
-                  : { backgroundColor: `#bae7ff` }
-              }
+              style={getCardStyle(item.gender)}
               onClick={() => navigate(`/name/${item.name}`)}
             >
               <Card.Meta title={item.name} description={item.gender} />
