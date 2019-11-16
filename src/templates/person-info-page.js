@@ -1,8 +1,8 @@
 import React from "react"
-import { Link } from "gatsby"
 import PropTypes from "prop-types"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import { LinkButton } from "../components/button"
 import PersonInfoPageTitle from "../components/person-info/page-title"
 import PersonInfoStatistics from "../components/person-info/statistics"
 import BirthNameCountChart from "../components/person-info/birth-name-count-chart"
@@ -21,7 +21,7 @@ const PersonTemplate = ({ pageContext: { person } }) => {
         <BirthNameCountChart birthNameCountData={person.data}/>
         <BirthNameRankChart birthNameRankData={person.data} />
       </div>
-      <Link to={routes.SEARCH_NAME}>Back</Link>{` `}<Link to={routes.ABOUT}>Home</Link>
+      <LinkButton to={routes.SEARCH_NAME}>Back</LinkButton><LinkButton to={routes.ABOUT}>Home</LinkButton>
     </Layout>
   )
 }

@@ -1,5 +1,5 @@
 import React from "react"
-import { Link } from "gatsby"
+import { LinkButton } from "../components/button"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import routes from "../routes"
@@ -12,8 +12,8 @@ const AboutPage = () => (
     <p>Some blurb on the site&#39;s history and tech</p>
     <h2>The Author</h2>
     <p>Some blurb on the author</p>
-    <Link to={routes.HOME}>Home</Link>
-    <Link to={routes.SEARCH_NAME}>Start Searching</Link>
+    <LinkButton to={routes.HOME}>Home</LinkButton>
+    <LinkButton to={routes.SEARCH_NAME}>Start Searching</LinkButton>
   </Layout>
 )
 
