@@ -2,12 +2,13 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Statistic, Icon } from 'antd'
 import enums from "../../enums"
+import styleColors from "../../style-colors"
 
 const BirthNameCountChangeStat = ({ recordedYear = null, name = null, countChange = -1, countChangeDirection = null, style = {} }) => {
   let countChangeDirectionIcon = <Icon type="minus" />
-  let countChangeDirectionColor = `#A9A9A9`
-  if (countChangeDirection === enums.MOVEMENT.UP) { countChangeDirectionIcon = <Icon type="arrow-up" />; countChangeDirectionColor = `#3f8600` }
-  if (countChangeDirection === enums.MOVEMENT.DOWN) { countChangeDirectionIcon = <Icon type="arrow-down" />; countChangeDirectionColor = `#cf1322` }
+  let countChangeDirectionColor = styleColors.STAT_CHANGE.NO_CHANGE
+  if (countChangeDirection === enums.MOVEMENT.UP) { countChangeDirectionIcon = <Icon type="arrow-up" />; countChangeDirectionColor = styleColors.STAT_CHANGE.INCREASE }
+  if (countChangeDirection === enums.MOVEMENT.DOWN) { countChangeDirectionIcon = <Icon type="arrow-down" />; countChangeDirectionColor = styleColors.STAT_CHANGE.DECREASE }
 
   return (
     <>
