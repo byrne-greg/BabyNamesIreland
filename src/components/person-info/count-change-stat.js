@@ -12,7 +12,7 @@ const BirthNameCountChangeStat = ({ recordedYear = null, name = null, countChang
   return (
     <>
       <Statistic
-        title={`${countChangeDirection !== enums.MOVEMENT.NONE ? countChangeDirection === enums.MOVEMENT.UP ? `More` : `Less` : `No change in`} people born since ${recordedYear}`}
+        title={`${countChangeDirection !== enums.MOVEMENT.NONE ? countChangeDirection === enums.MOVEMENT.UP ? `More` : `Less` : `No change in`} ${name}'s born since ${recordedYear}`}
         value={countChange}
         valueStyle={{ color: countChangeDirectionColor }}
         prefix={countChangeDirectionIcon}

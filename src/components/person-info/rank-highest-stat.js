@@ -9,7 +9,7 @@ const BirthNameHighestRankStat = ({ name = null, data = [], style = {} }) => {
   return (
     <Statistic
       title={`Most popular year for ${name}`}
-      value={`${highestRankRecord.rank}${getRankingSuffix(highestRankRecord.rank)} in ${highestRankRecord.year}`}
+      value={`${highestRankRecord.year} (${highestRankRecord.rank}${getRankingSuffix(highestRankRecord.rank)})`}
       style={style}
     />
 

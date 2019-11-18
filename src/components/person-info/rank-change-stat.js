@@ -9,10 +9,14 @@ const BirthNameRankChangeStat = ({ recordedYear = null, rankChange = -1, rankCha
   if (rankChangeDirection === enums.MOVEMENT.UP) { rankChangeDirectionIcon = <Icon type="arrow-up" />; rankChangeDirectionColor = `#3f8600` }
   if (rankChangeDirection === enums.MOVEMENT.DOWN) { rankChangeDirectionIcon = <Icon type="arrow-down" />; rankChangeDirectionColor = `#cf1322` }
 
+  let dynamicStatText = `Same popularity`
+  if (rankChangeDirection === enums.MOVEMENT.UP) { dynamicStatText = `More popular` }
+  if (rankChangeDirection === enums.MOVEMENT.DOWN) { dynamicStatText = `Less popular` }
+
   return (
     <>
       <Statistic
-        title={`Moved ${rankChangeDirection !== enums.MOVEMENT.NONE ? rankChangeDirection.toLowerCase() : `no places`} in popularity since ${recordedYear}`}
+        title={`${dynamicStatText} since ${recordedYear}`}
         value={rankChange}
         valueStyle={{ color: rankChangeDirectionColor }}
         prefix={rankChangeDirectionIcon}

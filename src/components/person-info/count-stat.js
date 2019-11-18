@@ -6,7 +6,7 @@ const BirthNameCountStat = ({ name = null, lastRecordedYear = null, count = -1, 
   return (
 
     <Statistic
-      title={`People born as ${name} in ${lastRecordedYear}`}
+      title={`${name}'s born in ${lastRecordedYear}`}
       value={count}
       style={style}
     />

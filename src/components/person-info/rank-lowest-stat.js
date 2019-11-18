@@ -9,7 +9,7 @@ const BirthNameLowestRankStat = ({ name = null, data = [], style = {} }) => {
   return (
     <Statistic
       title={`Least popular year for ${name}`}
-      value={`${lowestRankRecord.rank}${getRankingSuffix(lowestRankRecord.rank)} in ${lowestRankRecord.year}`}
+      value={`${lowestRankRecord.year} (${lowestRankRecord.rank}${getRankingSuffix(lowestRankRecord.rank)})`}
       style={style}
     />
 
