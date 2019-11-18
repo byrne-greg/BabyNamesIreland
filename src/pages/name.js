@@ -53,6 +53,13 @@ const SearchPage = ({ data }) => {
   return (
     <Layout>
       <SEO title="Search for Irish baby name" />
+      <div style={{ display: `flex`, justifyContent: `center` }}>
+        <label htmlFor="name-search" style={{
+          color: `rgba(0, 0, 0, 0.85)`,
+          fontWeight: `600`,
+          fontSize: `1rem`,
+        }}>Search for a baby name</label>
+      </div>
       <Input.Search
         placeholder="type name here"
         size="large"
@@ -61,6 +68,7 @@ const SearchPage = ({ data }) => {
         onChange={event => { filterNameList(event.target.value) }}
         onClick={event => { event.target.value = ``; filterNameList(``) }}
         style={{ margin: `1rem` }}
+        id="name-search"
       />
       <List
         grid={{ gutter: 16, xs: 2, sm: 3, xl: 4 }}
