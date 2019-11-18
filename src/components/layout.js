@@ -47,3 +47,12 @@ Layout.propTypes = {
 }
 
 export default Layout
+
+export const Section = ({ children }) => (
+  <section style={{ margin: `3rem 1rem` }}>
+    {children}
+  </section>
+)
+Section.propTypes = {
+  children: PropTypes.node.isRequired,
+}
