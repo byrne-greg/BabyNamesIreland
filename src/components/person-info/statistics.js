@@ -33,8 +33,8 @@ const PersonInfoStatistics = ({ person }) => {
 
   return (
     <>
-      <Row type='flex' justify="space-around" align="top">
-        <Col >
+      <Row type='flex' justify="space-between" align="top">
+        <Col>
           <StatCard><GenderStat gender={person.gender}/></StatCard>
         </Col>
         <Col>
