@@ -6,7 +6,7 @@ import { Row, Col } from 'antd'
 import Layout, { Section } from "../components/layout"
 import SEO from "../components/seo"
 import { LinkButton } from "../components/button"
-import TopNameStatCard from "../components/statistics/top-name-card"
+import TopNameStatCard from "../components/index/top-name-card"
 import SearchPageAsComponent from "../components/search/SearchPageAsComponent"
 import routes from "../routes"
 import enums from "../enums"
