@@ -19,6 +19,4 @@ export function getFlattenedPeopleWithYearData (nameArray, yearString) {
   const flattenedPeopleWithRelevantData = peopleWithRelevantData.map(person => { const dataOfYearReq = person.data.filter(yearData => yearData.year === yearString)[0]; return { name: person.name, gender: person.gender, year: dataOfYearReq.year, rank: dataOfYearReq.rank, key: dataOfYearReq.rank, bornCount: dataOfYearReq.total } })
 
   return flattenedPeopleWithRelevantData
-
-
 }
