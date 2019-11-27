@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { FlexibleWidthXYPlot, LineMarkSeries, LabelSeries, XAxis, YAxis, VerticalGridLines, HorizontalGridLines } from 'react-vis'
+import { FlexibleWidthXYPlot, LineMarkSeries, XAxis, YAxis, VerticalGridLines, HorizontalGridLines } from 'react-vis'
 
 const BirthNameCountChart = ({ birthNameCountData }) => {
   const birthNameCountChartData = birthNameCountData.map(dataObj => { return { x: dataObj.year, y: dataObj.total } }).sort((a, b) => Number(a.x) - Number(b.x))
