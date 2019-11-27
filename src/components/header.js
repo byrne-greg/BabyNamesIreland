@@ -1,11 +1,12 @@
 import { Link } from "gatsby"
 import PropTypes from "prop-types"
 import React from "react"
+import styleColors from "../style-colors"
 
 const Header = ({ siteTitle }) => (
   <header
     style={{
-      background: `rebeccapurple`,
+      background: styleColors.HEADER.BACKGROUND,
       marginBottom: `1.45rem`,
     }}
   >

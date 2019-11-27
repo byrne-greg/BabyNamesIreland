@@ -20,7 +20,7 @@ export const query = graphql`
 
 const SearchPage = ({ data }) => (
   <Layout>
-    <SEO title="Search for Irish baby name" />
+    <SEO title="Search Baby Name" />
     <LinkButton to={routes.HOME}>Back</LinkButton><LinkButton to={routes.ABOUT}>About</LinkButton>
     <NameSearch data={data}/>
   </Layout>

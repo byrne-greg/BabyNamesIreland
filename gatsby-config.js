@@ -1,8 +1,8 @@
 module.exports = {
   siteMetadata: {
-    title: `Popular Birth Names in Ireland`,
-    description: `Find what are the popular birth names in Ireland`,
-    author: `gregbyrne`,
+    title: `Baby Names Ireland`,
+    description: `Search and find popular baby names in Ireland`,
+    author: `@gregbyrne - https://www.linkedin.com/in/byrne-greg/8`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,

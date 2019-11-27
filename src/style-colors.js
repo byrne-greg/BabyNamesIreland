@@ -8,5 +8,8 @@ export default {
     INCREASE: `#3f8600`,
     DECREASE: `#cf1322`,
   },
+  HEADER: {
+    BACKGROUND: `#589738`,
+  },
 
 }
