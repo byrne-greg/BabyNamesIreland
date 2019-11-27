@@ -1,5 +1,6 @@
 export default {
   HOME: `/`,
   ABOUT: `/about`,
-  SEARCH_NAME: `/name`,
+  NAME_SEARCH: `/name`,
+  PERSON_INFO: (name) => `/name/${name}`,
 }

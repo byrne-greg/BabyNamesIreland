@@ -49,7 +49,7 @@ const NameSearch = ({ data }) => {
 
   return (
     <>
-      <NameSearchInput onSearch={enteredValue => { setIsActive(true); filterNameList(enteredValue); if (currentNameList.length === 1) { navigate(`${routes.SEARCH_NAME}/${currentNameList[0].name}`) } }}
+      <NameSearchInput onSearch={enteredValue => { setIsActive(true); filterNameList(enteredValue); if (currentNameList.length === 1) { navigate(`${routes.NAME_SEARCH}/${currentNameList[0].name}`) } }}
         onChange={event => { setIsActive(true); filterNameList(event.target.value) }}
         onClick={event => { setIsActive(true); event.target.value = ``; filterNameList(``) }}/>
       {isActive
@@ -61,7 +61,7 @@ const NameSearch = ({ data }) => {
               <List.Item>
                 <Card
                   style={getCardStyle(item.gender)}
-                  onClick={() => navigate(`/name/${item.name}`)}
+                  onClick={() => navigate(routes.PERSON_INFO(item.name))}
                 >
                   <Card.Meta title={item.name} description={item.gender} />
                 </Card>

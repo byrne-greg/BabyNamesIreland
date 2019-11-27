@@ -14,7 +14,7 @@ const PersonTemplate = ({ pageContext: { person } }) => {
   return (
     <Layout>
       <SEO title={person.name} />
-      <LinkButton to={routes.SEARCH_NAME}>Back</LinkButton><LinkButton to={routes.Home}>Home</LinkButton><LinkButton to={routes.ABOUT}>About</LinkButton>
+      <LinkButton to={routes.NAME_SEARCH}>Back</LinkButton><LinkButton to={routes.Home}>Home</LinkButton><LinkButton to={routes.ABOUT}>About</LinkButton>
       <PersonInfoPageTitle title={person.name}/>
       <PersonInfoStatistics person={person} />
       <div style={{ margin: `2rem 0` }}>

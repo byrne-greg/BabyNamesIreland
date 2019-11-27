@@ -13,7 +13,7 @@ const AboutPage = () => (
     <h2>The Author</h2>
     <p>Some blurb on the author</p>
     <LinkButton to={routes.HOME}>Home</LinkButton>
-    <LinkButton to={routes.SEARCH_NAME}>Start Searching</LinkButton>
+    <LinkButton to={routes.NAME_SEARCH}>Start Searching</LinkButton>
   </Layout>
 )
 
