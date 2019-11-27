@@ -16,7 +16,7 @@ const BirthNameCountChart = ({ birthNameCountData }) => {
     <FlexibleWidthXYPlot xType="ordinal" height={500} margin={{ left: chartLeftMargin }} >
       <VerticalGridLines />
       <HorizontalGridLines />
-      <XAxis title="year" tickPadding={35} tickSizeInner={500} tickLabelAngle={90} />
+      <XAxis title="year" tickPadding={5} tickSizeInner={500} tickLabelAngle={-90} />
       <YAxis title="births registered"/>
       <LineMarkSeries data={birthNameCountChartData} />
       <LabelSeries data={birthNameCountChartData} getLabel={d => `${d.y}`} style={{ fontSize: `0.5rem` }} />
