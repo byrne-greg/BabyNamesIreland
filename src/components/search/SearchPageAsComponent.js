@@ -22,7 +22,15 @@ const SearchPageAsComponent = ({ data }) => {
   const filterNameList = searchName => {
     let filteredNameList = initialBirthNames
     if (searchName !== ``) {
-      filteredNameList = filteredNameList.filter(({ name }) => name.toUpperCase().includes(searchName.toUpperCase()))
+      // When a user searches for a name, they will likely start with the initial character of that name.
+      // The result list should order the results with the characters that match the start of the name first before showing 'fuzzy' matches (names containing part of the name)
+      // e.g. typing 'GA' should show 'Gary' first before 'Abigail'
+      const startsWithSearchNameList = filteredNameList.filter(({ name }) => name.toUpperCase().startsWith(searchName.toUpperCase()))
+      const containsSearchNameList = filteredNameList.filter(({ name }) => name.toUpperCase().includes(searchName.toUpperCase()))
+      const containButNotStartsWithSearchNameList = containsSearchNameList.filter(person => { console.log(person, startsWithSearchNameList.indexOf(person)); return startsWithSearchNameList.indexOf(person) < 0 })
+      filteredNameList = [
+        ...startsWithSearchNameList,
+        ...containButNotStartsWithSearchNameList]
     }
     setCurrentNameList(filteredNameList)
   }
@@ -58,20 +66,22 @@ const SearchPageAsComponent = ({ data }) => {
         style={{ margin: `1rem` }}
         id="name-search"
       />
-      <List
-        grid={{ gutter: 16, xs: 2, sm: 3, xl: 4 }}
-        dataSource={currentNameList}
-        renderItem={item => (
-          <List.Item>
-            <Card
-              style={getCardStyle(item.gender)}
-              onClick={() => navigate(`/name/${item.name}`)}
-            >
-              <Card.Meta title={item.name} description={item.gender} />
-            </Card>
-          </List.Item>
-        )}
-      />
+      <div style={{ maxHeight: `800px` }}>
+        <List
+          grid={{ gutter: 16, xs: 2, sm: 3, xl: 4 }}
+          dataSource={currentNameList}
+          renderItem={item => (
+            <List.Item>
+              <Card
+                style={getCardStyle(item.gender)}
+                onClick={() => navigate(`/name/${item.name}`)}
+              >
+                <Card.Meta title={item.name} description={item.gender} />
+              </Card>
+            </List.Item>
+          )}
+        />
+      </div>
     </>
   )
 }
