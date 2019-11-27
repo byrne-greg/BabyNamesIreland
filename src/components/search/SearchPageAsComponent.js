@@ -27,7 +27,7 @@ const SearchPageAsComponent = ({ data }) => {
       // e.g. typing 'GA' should show 'Gary' first before 'Abigail'
       const startsWithSearchNameList = filteredNameList.filter(({ name }) => name.toUpperCase().startsWith(searchName.toUpperCase()))
       const containsSearchNameList = filteredNameList.filter(({ name }) => name.toUpperCase().includes(searchName.toUpperCase()))
-      const containButNotStartsWithSearchNameList = containsSearchNameList.filter(person => { console.log(person, startsWithSearchNameList.indexOf(person)); return startsWithSearchNameList.indexOf(person) < 0 })
+      const containButNotStartsWithSearchNameList = containsSearchNameList.filter(person => startsWithSearchNameList.indexOf(person) < 0)
       filteredNameList = [
         ...startsWithSearchNameList,
         ...containButNotStartsWithSearchNameList]
