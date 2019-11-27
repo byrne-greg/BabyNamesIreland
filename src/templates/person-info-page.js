@@ -1,3 +1,4 @@
+import '../../node_modules/react-vis/dist/style.css'
 import React from "react"
 import PropTypes from "prop-types"
 import Layout from "../components/layout"
@@ -7,14 +8,13 @@ import PersonInfoPageTitle from "../components/person-info/page-title"
 import PersonInfoStatistics from "../components/person-info/statistics"
 import BirthNameCountChart from "../components/person-info/birth-name-count-chart"
 import BirthNameRankChart from "../components/person-info/birth-name-rank-chart"
-import '../../node_modules/react-vis/dist/style.css'
 import routes from '../routes'
 
 const PersonTemplate = ({ pageContext: { person } }) => {
   return (
     <Layout>
       <SEO title={person.name} />
-      <LinkButton to={routes.SEARCH_NAME}>Back</LinkButton><LinkButton to={routes.ABOUT}>Home</LinkButton>
+      <LinkButton to={routes.SEARCH_NAME}>Back</LinkButton><LinkButton to={routes.Home}>Home</LinkButton><LinkButton to={routes.ABOUT}>About</LinkButton>
       <PersonInfoPageTitle title={person.name}/>
       <PersonInfoStatistics person={person} />
       <div style={{ margin: `2rem 0` }}>
