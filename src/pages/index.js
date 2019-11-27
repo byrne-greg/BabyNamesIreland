@@ -8,6 +8,7 @@ import SEO from "../components/seo"
 import { LinkButton } from "../components/button"
 import TopNameStatCard from "../components/index/top-name-card"
 import NameSearch from "../components/search/NameSearch"
+import { CSOLink } from "../components/links"
 import routes from "../routes"
 import enums from "../enums"
 
@@ -39,13 +40,13 @@ const IndexPage = ({ data }) => {
       {/* Hero */}
       <Section>
         {/* <h1>{data.site.siteMetadata.title}</h1> */}
-        <h2>Search for the popularity of names in Ireland</h2>
+        <h2>Search and find popular baby names in Ireland</h2>
       </Section>
       {/* Blurb */}
       <Section>
         {/* Some descriptive (or perhaps minimalist) blurb about the purpose of this corner of the internet */}
-        <p>Every year, the Irish Central Statistics Office compiles data on the registered birth names within the Republic of Ireland including their gender nominative, their rank within that nominative, and the total registered with that name.</p>
-        <p>This data is recorded as far back as 1998. Data on names that are included are where the observation of record is not missing and doesn&apos;t fall under a limit of discretion/uncertainty </p>
+        <p>Every year, the Irish <CSOLink/> compiles data on the registered birth names within the Republic of Ireland including their gender nominative, their rank within that nominative, and the total registered with that name.</p>
+        <p>This data is recorded as far back as 1998. Data on names that are included are where the observation of record is not missing and doesn&apos;t fall under a limit of discretion or uncertainty </p>
         <p>Use the search feature below to discover how popular any given first name is in Ireland</p>
         <LinkButton to={routes.ABOUT}>About</LinkButton>
       </Section>
