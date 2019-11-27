@@ -15,7 +15,7 @@ const sortBirthNamesList = birthNamesList => birthNamesList.sort((a, b) => {
   return 0
 })
 
-const SearchPageAsComponent = ({ data }) => {
+const SearchNameComponent = ({ data }) => {
   const initialBirthNames = sortBirthNamesList(data.allBirthNames.nodes)
   const [currentNameList, setCurrentNameList] = useState(initialBirthNames)
 
@@ -48,7 +48,6 @@ const SearchPageAsComponent = ({ data }) => {
 
   return (
     <>
-      <SEO title="Search for Irish baby name" />
       <div style={{ display: `flex`, justifyContent: `center` }}>
         <label htmlFor="name-search" style={{
           color: `rgba(0, 0, 0, 0.85)`,
@@ -87,8 +86,8 @@ const SearchPageAsComponent = ({ data }) => {
 }
 
 // TODO: should we be enforcing prop types for data retrieved by GraphQL?
-SearchPageAsComponent.propTypes = {
+SearchNameComponent.propTypes = {
   data: PropTypes.object.isRequired,
 }
 
-export default SearchPageAsComponent
+export default SearchNameComponent

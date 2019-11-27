@@ -7,7 +7,7 @@ import Layout, { Section } from "../components/layout"
 import SEO from "../components/seo"
 import { LinkButton } from "../components/button"
 import TopNameStatCard from "../components/index/top-name-card"
-import SearchPageAsComponent from "../components/search/SearchPageAsComponent"
+import SearchNameComponent from "../components/search/SearchNameComponent"
 import routes from "../routes"
 import enums from "../enums"
 
@@ -58,7 +58,7 @@ const IndexPage = ({ data }) => {
       </Section>
       {/* Search */}
       <Section>
-        <SearchPageAsComponent data={data}/>
+        <SearchNameComponent data={data}/>
       </Section>
 
       {/* <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
