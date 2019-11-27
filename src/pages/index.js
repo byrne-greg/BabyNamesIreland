@@ -1,13 +1,12 @@
 import 'antd/dist/antd.css'
 import React from "react"
 import PropTypes from 'prop-types'
-import { graphql, navigate } from "gatsby"
+import { graphql } from "gatsby"
 import { Row, Col } from 'antd'
 import Layout, { Section } from "../components/layout"
 import SEO from "../components/seo"
 import { LinkButton } from "../components/button"
 import TopNameStatCard from "../components/index/top-name-card"
-// import NameSearchInput from "../components/search/NameSearchInput"
 import NameSearch from "../components/search/NameSearch"
 import routes from "../routes"
 import enums from "../enums"
@@ -59,7 +58,6 @@ const IndexPage = ({ data }) => {
       </Section>
       {/* Search */}
       <Section>
-        {/* <NameSearchInput onSearch={() => navigate(routes.SEARCH_NAME)} onClick={() => navigate(routes.SEARCH_NAME)} onChange={() => navigate(routes.SEARCH_NAME)}/> */}
         <NameSearch data={data}/>
       </Section>
 
