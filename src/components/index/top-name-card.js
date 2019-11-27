@@ -7,9 +7,7 @@ import enums from "../../enums"
 const TopNameStatCard = ({ nameData, genderEnum = enums.GENDER.MALE, cardStyle = {}, tableStyle = {} }) => {
   const [filterByNum, setFilterByNum] = useState(5)
 
-  // TODO extract function into the utils and break down further
   const headlineYear = `${new Date().getFullYear() - 1}`
-
   let cardTitle = `Top Male Names for ${headlineYear}`
   let isGenderFunction = isMale
   if (genderEnum === enums.GENDER.FEMALE) {
