@@ -14,14 +14,15 @@ const PersonTemplate = ({ pageContext: { person } }) => {
   return (
     <Layout>
       <SEO title={person.name} />
+      <LinkButton to={routes.SEARCH_NAME}>Back</LinkButton><LinkButton to={routes.ABOUT}>Home</LinkButton>
       <PersonInfoPageTitle title={person.name}/>
       <PersonInfoStatistics person={person} />
-      <hr/>
-      <div>
+      <div style={{ margin: `2rem 0` }}>
         <BirthNameCountChart birthNameCountData={person.data}/>
+      </div>
+      <div style={{ margin: `2rem 0` }}>
         <BirthNameRankChart birthNameRankData={person.data} />
       </div>
-      <LinkButton to={routes.SEARCH_NAME}>Back</LinkButton><LinkButton to={routes.ABOUT}>Home</LinkButton>
     </Layout>
   )
 }
