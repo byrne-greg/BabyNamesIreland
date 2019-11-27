@@ -1,8 +1,8 @@
 import React, { useState } from "react"
 import PropTypes from 'prop-types'
-import { List, Card, Input } from 'antd'
+import { List, Card } from 'antd'
 import { navigate } from 'gatsby'
-import SEO from "../seo"
+import NameSearchInput from './NameSearchInput'
 import routes from "../../routes"
 import styleColors from "../../style-colors"
 import { isFemale } from "../../utils"
@@ -15,12 +15,13 @@ const sortBirthNamesList = birthNamesList => birthNamesList.sort((a, b) => {
   return 0
 })
 
-const SearchNameComponent = ({ data }) => {
-  const initialBirthNames = sortBirthNamesList(data.allBirthNames.nodes)
-  const [currentNameList, setCurrentNameList] = useState(initialBirthNames)
+const NameSearch = ({ data }) => {
+  const initialBirthNameData = sortBirthNamesList(data.allBirthNames.nodes)
+  const [currentNameList, setCurrentNameList] = useState(initialBirthNameData)
+  const [isActive, setIsActive] = useState(false)
 
   const filterNameList = searchName => {
-    let filteredNameList = initialBirthNames
+    let filteredNameList = initialBirthNameData
     if (searchName !== ``) {
       // When a user searches for a name, they will likely start with the initial character of that name.
       // The result list should order the results with the characters that match the start of the name first before showing 'fuzzy' matches (names containing part of the name)
@@ -48,46 +49,33 @@ const SearchNameComponent = ({ data }) => {
 
   return (
     <>
-      <div style={{ display: `flex`, justifyContent: `center` }}>
-        <label htmlFor="name-search" style={{
-          color: `rgba(0, 0, 0, 0.85)`,
-          fontWeight: `600`,
-          fontSize: `1rem`,
-        }}>Search for a baby name</label>
-      </div>
-      <Input.Search
-        placeholder="type name here"
-        size="large"
-        enterButton
-        onSearch={enteredValue => { filterNameList(enteredValue); if (currentNameList.length === 1) { navigate(`${routes.SEARCH_NAME}/${currentNameList[0].name}`) } }}
-        onChange={event => { filterNameList(event.target.value) }}
-        onClick={event => { event.target.value = ``; filterNameList(``) }}
-        style={{ margin: `1rem` }}
-        id="name-search"
-      />
-      <div style={{ maxHeight: `800px` }}>
-        <List
-          grid={{ gutter: 16, xs: 2, sm: 3, xl: 4 }}
-          dataSource={currentNameList}
-          renderItem={item => (
-            <List.Item>
-              <Card
-                style={getCardStyle(item.gender)}
-                onClick={() => navigate(`/name/${item.name}`)}
-              >
-                <Card.Meta title={item.name} description={item.gender} />
-              </Card>
-            </List.Item>
-          )}
-        />
-      </div>
+      <NameSearchInput onSearch={enteredValue => { setIsActive(true); filterNameList(enteredValue); if (currentNameList.length === 1) { navigate(`${routes.SEARCH_NAME}/${currentNameList[0].name}`) } }}
+        onChange={event => { setIsActive(true); filterNameList(event.target.value) }}
+        onClick={event => { setIsActive(true); event.target.value = ``; filterNameList(``) }}/>
+      {isActive
+        ? (<div style={{ maxHeight: `800px` }}>
+          <List
+            grid={{ gutter: 16, xs: 2, sm: 3, xl: 4 }}
+            dataSource={currentNameList}
+            renderItem={item => (
+              <List.Item>
+                <Card
+                  style={getCardStyle(item.gender)}
+                  onClick={() => navigate(`/name/${item.name}`)}
+                >
+                  <Card.Meta title={item.name} description={item.gender} />
+                </Card>
+              </List.Item>
+            )}
+          />
+        </div>) : null}
     </>
   )
 }
 
 // TODO: should we be enforcing prop types for data retrieved by GraphQL?
-SearchNameComponent.propTypes = {
+NameSearch.propTypes = {
   data: PropTypes.object.isRequired,
 }
 
-export default SearchNameComponent
+export default NameSearch
