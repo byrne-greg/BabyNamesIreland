@@ -14,7 +14,7 @@ const BirthNameRankChart = ({ birthNameRankData }) => {
       <HorizontalGridLines />
       <XAxis title="year" tickPadding={5} tickSizeInner={500} tickLabelAngle={-90}/>
       <YAxis title="rankings"/>
-      <LineMarkSeries data={birthNameRankChartData} />
+      <LineMarkSeries data={birthNameRankChartData} curve={`curveMonotoneX`}/>
       <LabelSeries data={birthNameRankChartData} getLabel={d => `${d.y}`} style={{ fontSize: `0.5rem` }} />
     </FlexibleWidthXYPlot>
   )
