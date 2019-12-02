@@ -5,11 +5,9 @@ import { graphql } from "gatsby"
 import { Row, Col } from 'antd'
 import Layout, { Section } from "../components/layout"
 import SEO from "../components/seo"
-import { LinkButton } from "../components/button"
 import TopNameStatCard from "../components/index/top-name-card"
 import NameSearch from "../components/search/NameSearch"
 import { CSOLink } from "../components/links"
-import routes from "../routes"
 import enums from "../enums"
 
 export const query = graphql`
@@ -35,9 +33,8 @@ export const query = graphql`
 
 const IndexPage = ({ data }) => {
   return (
-    <Layout>
+    <Layout hero={<Hero/>}>
       <SEO title="Home" />
-      {/* Hero */}
       <Section>
         {/* <h1>{data.site.siteMetadata.title}</h1> */}
         <h2>Search and find popular baby names in Ireland</h2>
@@ -79,3 +76,26 @@ IndexPage.propTypes = {
 }
 
 export default IndexPage
+
+const Hero = () => (
+  <div style={{
+    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://cdn.pixabay.com/photo/2015/08/02/21/53/child-871845_960_720.jpg")`,
+    height: `15rem`,
+    backgroundPosition: `center`,
+    backgroundRepeat: `no-repeat`,
+    backgroundSize: `cover`,
+    position: `relative`,
+  }}>
+    <div >
+      <p style={{
+        fontSize: `calc(1rem + 1vw)`,
+        fontStyle: `italic`,
+        fontWeight: `bold`,
+        color: `white`,
+        marginRight: `calc(50vw-20px)`,
+        padding: `2rem 0 2rem 2rem`,
+
+      }}>Discover the popularity of your baby name in Ireland</p>
+    </div>
+  </div>
+)
