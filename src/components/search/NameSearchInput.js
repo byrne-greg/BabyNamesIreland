@@ -4,7 +4,7 @@ import { Input } from 'antd'
 
 const NameSearchInput = ({ onSearch = () => {}, onClick = () => {}, onChange = () => {} }) => {
   return (
-    <>
+    <div style={{ margin: `1rem` }}>
       <div style={{ display: `flex`, justifyContent: `center` }}>
         <label htmlFor="name-search" style={{
           color: `rgba(0, 0, 0, 0.85)`,
@@ -19,10 +19,10 @@ const NameSearchInput = ({ onSearch = () => {}, onClick = () => {}, onChange = (
         onSearch={onSearch}
         onChange={onChange}
         onClick={onClick}
-        style={{ margin: `1rem` }}
+        style={{ margin: `1rem 0` }}
         id="name-search"
       />
-    </>)
+    </div>)
 }
 NameSearchInput.propTypes = {
   onSearch: PropTypes.func.isRequired,
