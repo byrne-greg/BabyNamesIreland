@@ -13,6 +13,18 @@ export const CSOLink = () => <CoreLink url={`https://www.cso.ie/en/databases/`} 
 
 export const DataBackgroundNotes = () => <CoreLink url={`https://www.cso.ie/en/releasesandpublications/ep/p-ibn/irishbabiesnames2018/backgroundnotes/`} text={`background notes`}/>
 
+export const AntDesignLink = () => <CoreLink url={`https://ant.design/`} text={`Ant Design`}/>
+
+export const ReactLink = () => <CoreLink url={`https://reactjs.org/`} text={`React`}/>
+
+export const ReactVisLink = () => <CoreLink url={`https://uber.github.io/react-vis/`} text={`React-Vis`}/>
+
+export const AxiosLink = () => <CoreLink url={`https://github.com/axios/axios`} text={`Axios`}/>
+
+export const JSONStatLink = () => <CoreLink url={`https://json-stat.org/`} text={`JSONStat`}/>
+
+export const PopularFirstNamesInIrelandLink = () => <CoreLink url={`https://popularfirstnamesinireland.surge.sh/`} text={`Popular First Names in Ireland`}/>
+
 const CoreLink = ({ url = `http://www.babynamesireland.netlify.com`, text = `Baby Names Ireland` }) => (<a href={url} target="_blank" rel="noopener noreferrer">{text}</a>)
 
 export default CoreLink
