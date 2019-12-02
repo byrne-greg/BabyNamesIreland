@@ -32,9 +32,9 @@ const Header = ({ siteTitle }) => (
           {siteTitle}
         </Link>
       </h1>
-      <div>
-        <LinkButton type="default" to={routes.ABOUT} style={{ backgroundColor: `white`, margin: `0.5rem` }}>About</LinkButton>
-        <LinkButton type="default" to={routes.NAME_SEARCH} style={{ backgroundColor: `white`, margin: `0.5rem` }}>Search for Name</LinkButton>
+      <div style={{}}>
+        <LinkButton type="default" to={routes.ABOUT} style={{ backgroundColor: `white`, margin: `0.5rem 1rem` }}>About</LinkButton>
+        <LinkButton type="default" to={routes.NAME_SEARCH} style={{ backgroundColor: `white`, margin: `0.5rem 1rem` }}>Search</LinkButton>
       </div>
     </div>
   </header>
