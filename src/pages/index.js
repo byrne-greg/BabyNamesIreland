@@ -48,7 +48,6 @@ const IndexPage = ({ data }) => {
         <p>Every year, the Irish <CSOLink/> compiles data on the registered birth names within the Republic of Ireland including their gender nominative, their rank within that nominative, and the total registered with that name.</p>
         <p>This data is recorded as far back as 1998. Data on names that are included are where the observation of record is not missing and doesn&apos;t fall under a limit of discretion or uncertainty </p>
         <p>Use the search feature below to discover how popular any given first name is in Ireland</p>
-        <LinkButton to={routes.ABOUT}>About</LinkButton>
       </Section>
       {/* Top Stats */}
       <Section>
