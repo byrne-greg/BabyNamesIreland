@@ -1,4 +1,7 @@
+const primaryGreen = `#589738`
+
 export default {
+  PRIMARY_GREEN: primaryGreen,
   CARD: {
     FEMALE_BACKGROUND_COLOR: `#ffd6e7`,
     MALE_BACKGROUND_COLOR: `#bae7ff`,
@@ -9,7 +12,7 @@ export default {
     DECREASE: `#cf1322`,
   },
   HEADER: {
-    BACKGROUND: `#589738`,
+    BACKGROUND: primaryGreen,
   },
 
 }
