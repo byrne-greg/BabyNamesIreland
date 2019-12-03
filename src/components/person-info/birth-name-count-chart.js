@@ -12,7 +12,7 @@ const BirthNameCountChart = ({ birthNameCountData }) => {
     chartLeftMargin = 45
   }
 
-  const birthNameCountAverage = birthNameTotalCountLineData.reduce((acc, currentValue) => { console.log(acc, currentValue); return acc + currentValue.y }, 0) / birthNameTotalCountLineData.length
+  const birthNameCountAverage = birthNameTotalCountLineData.reduce((acc, currentValue) => acc + currentValue.y, 0) / birthNameTotalCountLineData.length
   const birthNameCountAverageLineData = birthNameCountData.map(dataObj => { return { x: dataObj.year, y: birthNameCountAverage } }).sort((a, b) => Number(a.x) - Number(b.x))
 
   return (

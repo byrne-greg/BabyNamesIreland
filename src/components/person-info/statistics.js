@@ -121,9 +121,6 @@ function getRankingChangeFromPreviousRecord (personData, person) {
   let rankingMovement = enums.MOVEMENT.NONE
   if (personData.length > 1) {
     const sortedRecords = sortPersonDataByYear(personData)
-    if (sortedRecords[1] === undefined) {
-      console.log(JSON.stringify(person, null, 2))
-    }
     const rankingChangeRaw = sortedRecords[0].rank - sortedRecords[1].rank
     if (rankingChangeRaw < 0) rankingMovement = enums.MOVEMENT.UP
     if (rankingChangeRaw > 0) rankingMovement = enums.MOVEMENT.DOWN
