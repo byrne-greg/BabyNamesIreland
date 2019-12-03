@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import PropTypes from "prop-types"
 import { Link, navigate, withPrefix } from "gatsby"
 import { Menu } from 'antd'
@@ -49,18 +49,20 @@ Header.propTypes = {
 export default Header
 
 const NavigationMenu = ({ headerGap }) => {
+  const keyRouteDefault = { key: `0`, route: routes.NOT_FOUND }
+  const [currentKeyRoute, setCurrentKeyRoute] = useState(keyRouteDefault)
   const keyRouteMap = [{ key: `1`, route: routes.HOME }, { key: `2`, route: routes.NAME_SEARCH }, { key: `3`, route: routes.ABOUT }]
 
-  const setSelectedMenuKey = () => {
+  useEffect(() => {
     const keyRoute = keyRouteMap.filter((keyRoute) => location.pathname === withPrefix(keyRoute.route))[0]
-    return keyRoute ? keyRoute.key : `0`
-  }
+    keyRoute ? setCurrentKeyRoute(keyRoute) : setCurrentKeyRoute(keyRouteDefault)
+  }, [setCurrentKeyRoute])
 
   return (
     <section>
       <Menu
         mode="horizontal"
-        selectedKeys={[setSelectedMenuKey()]}
+        selectedKeys={[currentKeyRoute.key]}
         style={{ lineHeight: `3rem`, display: `flex`, justifyContent: `center`, marginBottom: headerGap ? `1.45rem` : 0 }}
         onClick={(e) => {
           keyRouteMap.forEach(keyRoute => {
