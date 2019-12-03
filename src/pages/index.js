@@ -92,7 +92,7 @@ const Hero = () => (
         fontStyle: `italic`,
         fontWeight: `bold`,
         color: `white`,
-        marginRight: `calc(50vw-20px)`,
+        marginRight: `calc(50vw - 20px)`,
         padding: `2rem 0 2rem 2rem`,
 
       }}>Discover the popularity of your baby name in Ireland</p>
