@@ -21,7 +21,7 @@ const BniTextLogo = () => {
             fixed(width: 350) {
             ...GatsbyImageSharpFixed
           },
-          fluid(maxWidth: 350) {
+            fluid(maxWidth: 350) {
             ...GatsbyImageSharpFluid
           }
         }
@@ -30,7 +30,6 @@ const BniTextLogo = () => {
   `)
 
   return <Img
-    // fixed={data.placeholderImage.childImageSharp.fixed}
     fluid={data.placeholderImage.childImageSharp.fluid} />
 }
 
