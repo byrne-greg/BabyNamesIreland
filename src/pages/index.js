@@ -92,10 +92,11 @@ const Hero = () => (
         fontStyle: `italic`,
         fontWeight: `bold`,
         color: `white`,
-        marginRight: `calc(50vw - 20px)`,
+        marginLeft: `calc(5vw - 10px)`,
+        marginRight: `calc(50vw - 15px)`,
         padding: `2rem 0 2rem 2rem`,
 
-      }}>Discover the popularity of your baby name in Ireland</p>
+      }}>Discover how popular your baby name is in Ireland</p>
     </div>
   </div>
 )
