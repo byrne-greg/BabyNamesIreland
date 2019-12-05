@@ -5,6 +5,7 @@ export default {
     NONE: `NONE`,
   },
   GENDER: {
+    ALL: `ALL`,
     MALE: `MALE`,
     FEMALE: `FEMALE`,
   },

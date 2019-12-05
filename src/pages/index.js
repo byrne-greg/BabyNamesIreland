@@ -6,6 +6,7 @@ import { Row, Col } from 'antd'
 import Layout, { Section } from "../components/layout"
 import SEO from "../components/seo"
 import TopNameStatCard from "../components/index/top-name-card"
+import TrendingNameStatCard from "../components/index/trending-name-card"
 import NameSearch from "../components/search/NameSearch"
 import { CSOLink } from "../components/links"
 import enums from "../enums"
@@ -56,16 +57,20 @@ const IndexPage = ({ data }) => {
             <TopNameStatCard nameData={data.allBirthNames.nodes} genderEnum={enums.GENDER.FEMALE} cardStyle={{ margin: `1rem 0.5rem` }}/>
           </Col>
         </Row>
+        <Row type="flex" justify="space-around">
+          <Col>
+            <TrendingNameStatCard nameData={data.allBirthNames.nodes} direction={enums.MOVEMENT.UP} cardStyle={{ margin: `1rem 0.5rem` }}/>
+          </Col>
+          <Col>
+            <TrendingNameStatCard nameData={data.allBirthNames.nodes} direction={enums.MOVEMENT.DOWN} cardStyle={{ margin: `1rem 0.5rem` }}/>
+          </Col>
+        </Row>
       </Section>
       {/* Search */}
       <Section>
         <NameSearch data={data}/>
       </Section>
 
-      {/* <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-        <Image />
-      </div>
-       */}
     </Layout>
   )
 }

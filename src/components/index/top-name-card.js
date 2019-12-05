@@ -17,22 +17,24 @@ const TopNameStatCard = ({ nameData, genderEnum = enums.GENDER.MALE, cardStyle =
 
   const flattedPeopleWithRelevantYearData = getFlattenedPeopleWithYearData(nameData.filter(person => isGenderFunction(person.gender)), headlineYear)
   const displayNames = flattedPeopleWithRelevantYearData.filter(person => person.rank <= filterByNum).sort((a, b) => a.rank - b.rank)
+  // add a key for the tablerows
+  displayNames.forEach(person => { person.key = `top-name-card-${genderEnum}-${person.name}` })
 
   const columns = [
     {
       title: `Rank`,
       dataIndex: `rank`,
-      key: `rank`,
+      key: `top-name-card-${genderEnum}-rank`,
     },
     {
       title: `Name`,
       dataIndex: `name`,
-      key: `name`,
+      key: `top-name-card-${genderEnum}-name`,
     },
     {
       title: `# Born`,
       dataIndex: `bornCount`,
-      key: `bornCount`,
+      key: `top-name-card-${genderEnum}-bornCount`,
     },
   ]
 
