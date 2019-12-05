@@ -10,19 +10,8 @@ import PropTypes from "prop-types"
 import Header from "./header"
 import Footer from "./footer"
 import "./layout.css"
-// import { useStaticQuery, graphql } from "gatsby"
 
 const Layout = ({ hero = null, children }) => {
-  // const data = useStaticQuery(graphql`
-  //   query SiteTitleQuery {
-  //     site {
-  //       siteMetadata {
-  //         title
-  //       }
-  //     }
-  //   }
-  // `)
-
   return (
     <>
       <Header headerGap={hero === null} />
