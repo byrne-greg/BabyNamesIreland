@@ -22,7 +22,7 @@ const SearchPage = ({ data }) => (
   <Layout>
     <SEO title="Search Baby Name" />
     <LinkButton to={routes.HOME}>Back</LinkButton>
-    <NameSearch data={data}/>
+    <NameSearch data={data} showNamesByDefault={true}/>
   </Layout>
 )
 

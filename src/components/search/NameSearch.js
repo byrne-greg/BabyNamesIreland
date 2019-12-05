@@ -15,7 +15,7 @@ const sortBirthNamesList = birthNamesList => birthNamesList.sort((a, b) => {
   return 0
 })
 
-const NameSearch = ({ data }) => {
+const NameSearch = ({ data, showNamesByDefault = false }) => {
   const initialBirthNameData = sortBirthNamesList(data.allBirthNames.nodes)
   const [currentNameList, setCurrentNameList] = useState(initialBirthNameData)
   const [isActive, setIsActive] = useState(false)
@@ -49,10 +49,14 @@ const NameSearch = ({ data }) => {
 
   return (
     <>
-      <NameSearchInput onSearch={enteredValue => { setIsActive(true); filterNameList(enteredValue); if (currentNameList.length === 1) { navigate(`${routes.NAME_SEARCH}/${currentNameList[0].name}`) } }}
-        onChange={event => { setIsActive(true); filterNameList(event.target.value) }}
-        onClick={event => { setIsActive(true); event.target.value = ``; filterNameList(``) }}/>
-      {isActive
+      <NameSearchInput onSearch={enteredValue => {
+        setIsActive(true)
+        filterNameList(enteredValue)
+        if (currentNameList.length === 1) { navigate(`${routes.NAME_SEARCH}/${currentNameList[0].name}`) }
+      }}
+      onChange={event => { setIsActive(true); filterNameList(event.target.value) }}
+      onClick={event => { setIsActive(true); event.target.value = ``; filterNameList(``) }}/>
+      {isActive || showNamesByDefault
         ? (<div style={{ maxHeight: `800px` }}>
           <List
             grid={{ gutter: 16, xs: 2, sm: 3, xl: 4 }}
@@ -76,6 +80,7 @@ const NameSearch = ({ data }) => {
 // TODO: should we be enforcing prop types for data retrieved by GraphQL?
 NameSearch.propTypes = {
   data: PropTypes.object.isRequired,
+  showNamesByDefault: PropTypes.bool,
 }
 
 export default NameSearch
