@@ -38,6 +38,9 @@ module.exports = function getNameData (csoUrl, gender) {
         }
       }),
     }))
-    return nameData
+
+    const lastRecordedYear = yearDimension.id.map(stringYear => parseInt(stringYear)).reduce((highestYear, year) => year > highestYear ? year : highestYear, 0)
+    const birthNameData = { nameData: nameData, lastRecordedYear: lastRecordedYear }
+    return birthNameData
   })
 }

@@ -4,14 +4,14 @@ import { Card, Table, InputNumber, Row, Col, Select } from 'antd'
 import { isGender, getPersonDataWithRankChanges } from "../../utils"
 import enums from "../../enums"
 
-const TrendingNameStatCard = ({ nameData, direction = enums.MOVEMENT.UP, cardStyle = {}, tableStyle = {} }) => {
+const TrendingNameStatCard = ({ lastRecordedYear = 2018, nameData, direction = enums.MOVEMENT.UP, cardStyle = {}, tableStyle = {} }) => {
   const [numFilter, setFilterByNum] = useState(5)
   const [genderFilter, setFilterByGender] = useState(enums.GENDER.ALL)
 
   const movementTypePlaceholder = (up, down) => direction === enums.MOVEMENT.DOWN ? down : up
 
-  const currentYear = new Date().getFullYear()
-  const comparisonYears = [`${currentYear - 1}`, `${currentYear - 2}`]
+  const headlineYear = `${lastRecordedYear}`
+  const comparisonYears = [`${headlineYear}`, `${headlineYear - 1}`]
 
   let displayNames = getPersonDataWithRankChanges(nameData, comparisonYears).sort((a, b) => movementTypePlaceholder(b.rankChange - a.rankChange, a.rankChange - b.rankChange))
   displayNames = genderFilter !== enums.GENDER.ALL ? displayNames.filter(person => isGender(person.gender, genderFilter)) : displayNames
@@ -66,6 +66,7 @@ export default TrendingNameStatCard
 TrendingNameStatCard.propTypes = {
   nameData: PropTypes.array.isRequired,
   direction: PropTypes.string.isRequired,
+  lastRecordedYear: PropTypes.number,
   cardStyle: PropTypes.object,
   tableStyle: PropTypes.object,
 }

@@ -4,10 +4,10 @@ import { Card, Table, InputNumber, Row, Col } from 'antd'
 import { isMale, isFemale, getFlattenedPeopleWithYearData } from "../../utils"
 import enums from "../../enums"
 
-const TopNameStatCard = ({ nameData, genderEnum = enums.GENDER.MALE, cardStyle = {}, tableStyle = {} }) => {
+const TopNameStatCard = ({ lastRecordedYear = 2018, nameData, genderEnum = enums.GENDER.MALE, cardStyle = {}, tableStyle = {} }) => {
   const [filterByNum, setFilterByNum] = useState(5)
 
-  const headlineYear = `${new Date().getFullYear() - 1}`
+  const headlineYear = `${lastRecordedYear}`
   let cardTitle = `Top Male Names for ${headlineYear}`
   let isGenderFunction = isMale
   if (genderEnum === enums.GENDER.FEMALE) {
@@ -56,6 +56,7 @@ export default TopNameStatCard
 TopNameStatCard.propTypes = {
   nameData: PropTypes.array.isRequired,
   genderEnum: PropTypes.string.isRequired,
+  lastRecordedYear: PropTypes.number,
   cardStyle: PropTypes.object,
   tableStyle: PropTypes.object,
 }

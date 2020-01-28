@@ -18,8 +18,8 @@ exports.sourceNodes = async ({ actions }) => {
 async function createBirthNameNode (createNode) {
   const birthNames = await getBirthNameDataFromCSO()
 
-  // map into these results and create nodes
-  birthNames.map((person, i) => {
+  // map into the name data results and create node
+  birthNames.data.map((person, i) => {
     // Create your node object
     const birthNameNode = {
       // Required fields
@@ -50,6 +50,30 @@ async function createBirthNameNode (createNode) {
     // Create node with the gatsby createNode() API
     createNode(birthNameNode)
   })
+
+  // create the latest year node
+  const lastRecordedYearNode = {
+    // Required fields
+    id: `lry`,
+    parent: `__SOURCE__`,
+    internal: {
+      type: `LastRecordedYear`, // name of the graphQL query
+      // contentDigest will be added just after
+      // but it is required
+    },
+    children: [],
+
+    // Other fields that you want to query with graphQl
+    lastRecordedYear: birthNames.lastRecordedYear,
+  }
+  // Get content digest of node. (Required field)
+  const contentDigest = crypto
+    .createHash(`md5`)
+    .update(JSON.stringify(lastRecordedYearNode))
+    .digest(`hex`)
+  // add it to userNode
+  lastRecordedYearNode.internal.contentDigest = contentDigest
+  createNode(lastRecordedYearNode)
 }
 
 async function getBirthNameDataFromCSO () {
@@ -64,13 +88,11 @@ async function getBirthNameDataFromCSO () {
     `Female`,
   )
 
-  // // await for results
-  // TODO why does this not work?
-  // const babyNames = await axios.all(fetchBirthRegistrationBoysNames(), fetchBirthRegistrationGirlsNames()).then(result => { return [...result[0], ...result[1]]});
+  // await for results
   const res1 = await fetchBirthRegistrationBoysNames()
   const res2 = await fetchBirthRegistrationGirlsNames()
-  const birthNames = sanitizeBirthNameData([...res1, ...res2])
-  return birthNames
+  const birthNames = sanitizeBirthNameData([...res1.nameData, ...res2.nameData])
+  return { data: birthNames, lastRecordedYear: res1.lastRecordedYear }
 }
 
 function sanitizeBirthNameData (birthNameData) {

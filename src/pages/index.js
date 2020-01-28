@@ -29,6 +29,11 @@ export const query = graphql`
         title
       }
     }
+    allLastRecordedYear {
+      nodes {
+        lastRecordedYear
+      }
+    }
   }
 `
 
@@ -51,10 +56,10 @@ const IndexPage = ({ data }) => {
       <Section>
         <Row type="flex" justify="space-around">
           <Col>
-            <TopNameStatCard nameData={data.allBirthNames.nodes} genderEnum={enums.GENDER.MALE} cardStyle={{ margin: `1rem 0.5rem` }}/>
+            <TopNameStatCard lastRecordedYear={data.allLastRecordedYear.nodes[0].lastRecordedYear} nameData={data.allBirthNames.nodes} genderEnum={enums.GENDER.MALE} cardStyle={{ margin: `1rem 0.5rem` }}/>
           </Col>
           <Col>
-            <TopNameStatCard nameData={data.allBirthNames.nodes} genderEnum={enums.GENDER.FEMALE} cardStyle={{ margin: `1rem 0.5rem` }}/>
+            <TopNameStatCard lastRecordedYear={data.allLastRecordedYear.nodes[0].lastRecordedYear} nameData={data.allBirthNames.nodes} genderEnum={enums.GENDER.FEMALE} cardStyle={{ margin: `1rem 0.5rem` }}/>
           </Col>
         </Row>
         <Row type="flex" justify="space-around">
