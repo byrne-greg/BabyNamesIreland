@@ -2,9 +2,21 @@ module.exports = {
   siteMetadata: {
     title: `Baby Names Ireland`,
     description: `Search and find popular baby names in Ireland`,
-    author: `@gregbyrne - https://www.linkedin.com/in/byrne-greg/8`,
+    author: `Greg Byrne - https://www.gregbyrne.ie`,
+    siteUrl: `https://www.babynamesireland.netlify.com`,
+    inceptionYear: 2019,
   },
   plugins: [
+    {
+    // https://www.gatsbyjs.org/packages/gatsby-plugin-google-analytics/
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: `UA-137839720-5`,
+        head: true,
+        anonymize: true,
+        respectDNT: true,
+      },
+    },
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
