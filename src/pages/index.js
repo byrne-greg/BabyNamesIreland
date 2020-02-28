@@ -64,10 +64,10 @@ const IndexPage = ({ data }) => {
         </Row>
         <Row type="flex" justify="space-around">
           <Col>
-            <TrendingNameStatCard nameData={data.allBirthNames.nodes} direction={enums.MOVEMENT.UP} cardStyle={{ margin: `1rem 0.5rem` }}/>
+            <TrendingNameStatCard lastRecordedYear={data.allLastRecordedYear.nodes[0].lastRecordedYear} nameData={data.allBirthNames.nodes} direction={enums.MOVEMENT.UP} cardStyle={{ margin: `1rem 0.5rem` }}/>
           </Col>
           <Col>
-            <TrendingNameStatCard nameData={data.allBirthNames.nodes} direction={enums.MOVEMENT.DOWN} cardStyle={{ margin: `1rem 0.5rem` }}/>
+            <TrendingNameStatCard lastRecordedYear={data.allLastRecordedYear.nodes[0].lastRecordedYear} nameData={data.allBirthNames.nodes} direction={enums.MOVEMENT.DOWN} cardStyle={{ margin: `1rem 0.5rem` }}/>
           </Col>
         </Row>
       </Section>
