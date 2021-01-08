@@ -38,8 +38,9 @@
   ],
   "license": "MIT",
   "scripts": {
-    "build": "NODE_TLS_REJECT_UNAUTHORIZED=0 gatsby build",
-    "develop": "NODE_TLS_REJECT_UNAUTHORIZED=0 gatsby develop -- -https",
+    "build": "gatsby build",
+    "develop": "gatsby develop -- -https",
+    "clean": "rm -rfd node_modules/ && rm package-lock.json",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "start": "npm run develop",
     "serve": "gatsby serve",

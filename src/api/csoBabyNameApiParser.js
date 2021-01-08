@@ -4,11 +4,38 @@ const JSONstat = require(`jsonstat`)
 module.exports = function getNameData (csoUrl, gender) {
   console.log(`API_REQUEST: Requesting info from ${csoUrl}`)
   return axios.get(csoUrl).then(response => {
-    const dataset = JSONstat(response.data).Dataset(0)
 
-    const nameDimension = dataset.Dimension(`Name`)
-    const yearDimension = dataset.Dimension(`Year`)
-    const statDimension = dataset.Dimension(`Statistic`)
+    const dataset = JSONstat(response.data).Dataset(0)
+    // console.log(`CSO DATASET`, dataset)
+
+    const dimensionKey = {};
+    const reqDimensions = {}
+    dataset.id.forEach(id => {
+      dimensionData = dataset.Dimension(id);
+      if(dimensionData.label === 'Name') {
+        console.log("Computing Name Dimension")
+        reqDimensions.nameDimension = dimensionData;
+        dimensionKey.Name = id;
+      }
+      if(dimensionData.label === 'Year') {
+        console.log("Computing Year Dimension")
+        reqDimensions.yearDimension = dimensionData;
+        dimensionKey.Year = id;
+      }
+      if(dimensionData.label === 'Statistic') {
+        console.log("Computing Statistic Dimension")
+        reqDimensions.statDimension = dimensionData;
+        dimensionKey.Statistic = id;
+      }
+    })
+
+    console.log(`Computed Dimensions`, dimensionKey)
+
+    const { nameDimension, yearDimension, statDimension } = reqDimensions;
+    
+    // const nameDimension = dataset.Dimension(`Name`)
+    // const yearDimension = dataset.Dimension(`Year`)
+    // const statDimension = dataset.Dimension(`Statistic`)
 
     const nameData = nameDimension.id.map(nameCode => ({
       id: nameCode,
@@ -21,9 +48,9 @@ module.exports = function getNameData (csoUrl, gender) {
         const getStatValue = isRankingStat => {
           const totalNumData = () =>
             dataset.Data({
-              Name: nameCode,
-              Year: yearCode,
-              Statistic: statDimension.id.filter(
+              [dimensionKey.Name]: nameCode,
+              [dimensionKey.Year]: yearCode,
+              [dimensionKey.Statistic]: statDimension.id.filter(
                 statCode =>
                   isRankingStat ? isRankStat(statCode) : !isRankStat(statCode),
               )[0],
