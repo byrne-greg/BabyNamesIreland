@@ -5,7 +5,7 @@
  */
 // You can delete this file if you're not using it
 
-const getNameData = require(`./src/api/csoBabyNameApiParser`)
+const csoAPI = require(`./server/src/csoAPI`)
 const crypto = require(`crypto`)
 
 // data fetching and transforming for gql queries
@@ -16,7 +16,7 @@ exports.sourceNodes = async ({ actions }) => {
 }
 
 async function createBirthNameNode (createNode) {
-  const birthNames = await getBirthNameDataFromCSO()
+  const birthNames = await csoAPI.getBirthNameDataFromCSO()
 
   // map into the name data results and create node
   birthNames.data.map((person, i) => {
@@ -74,32 +74,6 @@ async function createBirthNameNode (createNode) {
   // add it to userNode
   lastRecordedYearNode.internal.contentDigest = contentDigest
   createNode(lastRecordedYearNode)
-}
-
-async function getBirthNameDataFromCSO () {
-  // fetch raw data from the birth name CSO statbank api
-  const fetchBirthRegistrationBoysNames = () => getNameData(
-    `https://www.cso.ie/StatbankServices/StatbankServices.svc/jsonservice/responseinstance/VSA10`,
-    `Male`,
-  )
-
-  const fetchBirthRegistrationGirlsNames = () => getNameData(
-    `https://www.cso.ie/StatbankServices/StatbankServices.svc/jsonservice/responseinstance/VSA11`,
-    `Female`,
-  )
-
-  // await for results
-  const res1 = await fetchBirthRegistrationBoysNames()
-  const res2 = await fetchBirthRegistrationGirlsNames()
-  const birthNames = sanitizeBirthNameData([...res1.nameData, ...res2.nameData])
-  return { data: birthNames, lastRecordedYear: res1.lastRecordedYear }
-}
-
-function sanitizeBirthNameData (birthNameData) {
-  const sanitizedBirthNameData = [...birthNameData]
-  // we are removing any person data that has zero for rank and total. this indicates the CSO didn't record or the data was noted as statistically unreliable
-  sanitizedBirthNameData.forEach(person => { person.data = person.data.filter(dataObj => dataObj.rank !== 0 && dataObj.total !== 0) })
-  return sanitizedBirthNameData
 }
 
 exports.createPages = async ({ graphql, actions }) => {
