@@ -52,6 +52,10 @@ const IndexPage = ({ data }) => {
         <p>This data is recorded as far back as 1998. Data on names that are included are where the observation of record is not missing and doesn&apos;t fall under a limit of discretion or uncertainty </p>
         <p>Use the search feature below to discover how popular any given first name is in Ireland</p>
       </Section>
+      {/* Search */}
+      <Section>
+        <NameSearch data={data}/>
+      </Section>
       {/* Top Stats */}
       <Section>
         <Row type="flex" justify="space-around">
@@ -71,10 +75,7 @@ const IndexPage = ({ data }) => {
           </Col>
         </Row>
       </Section>
-      {/* Search */}
-      <Section>
-        <NameSearch data={data}/>
-      </Section>
+ 
 
     </Layout>
   )
