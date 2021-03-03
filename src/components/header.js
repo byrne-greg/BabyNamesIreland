@@ -51,7 +51,7 @@ export default Header
 const NavigationMenu = ({ headerGap }) => {
   const keyRouteDefault = { key: `0`, route: routes.NOT_FOUND }
   const [currentKeyRoute, setCurrentKeyRoute] = useState(keyRouteDefault)
-  const keyRouteMap = [{ key: `1`, route: routes.HOME }, { key: `2`, route: routes.NAME_SEARCH }, { key: `3`, route: routes.ABOUT }]
+  const keyRouteMap = [{ key: `1`, route: routes.HOME }, { key: `2`, route: routes.NAME_SEARCH }, { key: `3`, route: routes.NEWS }, { key: `4`, route: routes.ABOUT }]
 
   useEffect(() => {
     const keyRoute = keyRouteMap.filter((keyRoute) => location.pathname === withPrefix(keyRoute.route))[0]
@@ -74,7 +74,8 @@ const NavigationMenu = ({ headerGap }) => {
       >
         <Menu.Item key="1" style={{fontSize: `calc(12px + 1vw)`}}>Home</Menu.Item>
         <Menu.Item key="2" style={{fontSize: `calc(12px + 1vw)`}}>Search</Menu.Item>
-        <Menu.Item key="3" style={{fontSize: `calc(12px + 1vw)`}}>About</Menu.Item>
+        <Menu.Item key="3" style={{fontSize: `calc(12px + 1vw)`}}>News</Menu.Item>
+        <Menu.Item key="4" style={{fontSize: `calc(12px + 1vw)`}}>About</Menu.Item>
       </Menu>
     </section>
   )

@@ -46,7 +46,8 @@
     "start": "npm run develop",
     "serve": "gatsby serve",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
-    "test:server": "jest ./server/**/*.test.js"
+    "test:server": "jest ./server/**/*.test.js",
+    "test:server:watch": "npm run test:server -- --watch"
   },
   "repository": {
     "type": "git",

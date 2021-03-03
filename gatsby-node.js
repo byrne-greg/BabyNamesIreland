@@ -16,7 +16,7 @@ exports.sourceNodes = async ({ actions }) => {
 }
 
 async function createBirthNameNode (createNode) {
-  const birthNames = await csoAPI.getBirthNameDataFromCSO()
+  const birthNames = await csoAPI.getNameOccurrenceNameDataFromCSO()
 
   // map into the name data results and create node
   birthNames.data.map((person, i) => {
