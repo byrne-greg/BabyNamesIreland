@@ -63,7 +63,7 @@ const NavigationMenu = ({ headerGap }) => {
       <Menu
         mode="horizontal"
         selectedKeys={[currentKeyRoute.key]}
-        style={{ lineHeight: `3rem`, display: `flex`, justifyContent: `center`, marginBottom: headerGap ? `1.45rem` : 0 }}
+        style={{lineHeight: `3rem`, display: `flex`, justifyContent: `center`, marginBottom: headerGap ? `1.45rem` : 0 }}
         onClick={(e) => {
           keyRouteMap.forEach(keyRoute => {
             if (keyRoute.key === e.key) {
@@ -72,9 +72,9 @@ const NavigationMenu = ({ headerGap }) => {
           })
         }}
       >
-        <Menu.Item key="1">Home</Menu.Item>
-        <Menu.Item key="2" >Search</Menu.Item>
-        <Menu.Item key="3">About</Menu.Item>
+        <Menu.Item key="1" style={{fontSize: `calc(12px + 1vw)`}}>Home</Menu.Item>
+        <Menu.Item key="2" style={{fontSize: `calc(12px + 1vw)`}}>Search</Menu.Item>
+        <Menu.Item key="3" style={{fontSize: `calc(12px + 1vw)`}}>About</Menu.Item>
       </Menu>
     </section>
   )
