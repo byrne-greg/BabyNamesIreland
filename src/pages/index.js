@@ -1,8 +1,8 @@
 import 'antd/dist/antd.css'
 import React from "react"
 import PropTypes from 'prop-types'
-import { graphql } from "gatsby"
-import { Row, Col } from 'antd'
+import { graphql, navigate } from "gatsby"
+import { Row, Col, Button } from 'antd'
 import Layout, { Section } from "../components/layout"
 import SEO from "../components/seo"
 import TopNameStatCard from "../components/index/top-name-card"
@@ -10,6 +10,8 @@ import TrendingNameStatCard from "../components/index/trending-name-card"
 import NameSearch from "../components/search/NameSearch"
 import { CSOLink } from "../components/links"
 import enums from "../enums"
+import routes from '../routes'
+import { LinkButton } from '../components/button'
 
 export const query = graphql`
   query IndexPageQuery {
@@ -54,7 +56,11 @@ const IndexPage = ({ data }) => {
       </Section>
       {/* Search */}
       <Section>
-        <NameSearch data={data}/>
+        <Row type="flex" justify="space-around">
+          <Button type="primary" size="large" onClick={() => navigate(routes.NAME_SEARCH)}>
+            Click here to search baby names
+          </Button>
+        </Row>
       </Section>
       {/* Top Stats */}
       <Section>
@@ -75,8 +81,6 @@ const IndexPage = ({ data }) => {
           </Col>
         </Row>
       </Section>
- 
-
     </Layout>
   )
 }
