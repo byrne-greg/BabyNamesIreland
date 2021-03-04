@@ -1,6 +1,7 @@
 import React from "react"
 import Layout, { Section } from "../components/layout"
 import SEO from "../components/seo"
+// TODO - move the news to markdown and apply gatsby templates. 
 
 const newsItem_20210304_1 = {
   headline: `Archival of Registered Births in Ireland`,
