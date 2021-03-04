@@ -1,11 +1,11 @@
-import React, { useState, useContext, useEffect, useCallback } from "react"
+import React, { useState, useContext, useEffect } from "react"
 import PropTypes from 'prop-types'
 import { List, Card } from 'antd'
 import { navigate } from 'gatsby'
 import NameSearchInput from './NameSearchInput'
 import routes from "../../routes"
 import styleColors from "../../style-colors"
-import { isFemale, debounce } from "../../utils"
+import { isFemale } from "../../utils"
 import { GlobalDispatchContext, GlobalStateContext } from "../../context/global/GlobalContextProvider"
 import { addCachedSearchResult } from "../../context/global/actions"
 
@@ -31,18 +31,14 @@ const sortBirthNamesList = birthNamesList => birthNamesList.sort((a, b) => {
 
 const calculateActiveNameList = (searchName, searchResultCache, activeNameList) => {
   if (searchName === ``) {
-    console.log(`searchname=${searchName}`, `Reusing All Values`)
     return searchResultCache.none
   }
 
   if (searchResultCache[searchName]) {
-    console.log(`searchname=${searchName}`, `Reusing Cache Value`)
     return searchResultCache[searchName]
   }
 
   if (!searchResultCache[searchName]) {
-    console.log(`searchname=${searchName}`, `Calculating New Value`)
-
     // When a user searches for a name, they will likely start with the initial character of that name.
     // The result list should order the results with the characters that match the start of the name first before showing 'fuzzy' matches (names containing part of the name)
     // e.g. typing 'GA' should show 'Gary' first before 'Abigail'
@@ -63,13 +59,28 @@ const NameSearch = ({ data, showNamesByDefault = false }) => {
 
   const [activeNameList, setActiveNameList] = useState(data.allBirthNames.nodes)
   const [isActive, setIsActive] = useState(false)
-  console.log(`searchResultCache`, searchResultCache)
 
+  // create an active list
+  useEffect(() => {
+    setActiveNameList(sortBirthNamesList(data.allBirthNames.nodes))
+  }, [data.allBirthNames.nodes, sortBirthNamesList, setActiveNameList])
+
+  // prepopulate the search result cache with initial values
+  // the combinations of the first two letters have the most results
   useEffect(() => {
     const sortedBirthNames = sortBirthNamesList(data.allBirthNames.nodes)
-    setActiveNameList(sortBirthNamesList)
     addCachedSearchResult(globalDispatch, { none: sortedBirthNames })
-  }, [data.allBirthNames.nodes, sortBirthNamesList, addCachedSearchResult, setActiveNameList])
+    const alphabetArray = `a b c d e f g h i j k l m n o p q r s t u v w x y z`.split(` `)
+    const initialCacheSearchResults = {}
+    alphabetArray.forEach(firstLetter => {
+      initialCacheSearchResults[firstLetter] = calculateActiveNameList(firstLetter, searchResultCache, sortedBirthNames)
+      alphabetArray.forEach(secondLetter => {
+        const firstSecondLetter = `${firstLetter}${secondLetter}`
+        initialCacheSearchResults[firstSecondLetter] = calculateActiveNameList(firstSecondLetter, searchResultCache, sortedBirthNames)
+      })
+    })
+    addCachedSearchResult(globalDispatch, initialCacheSearchResults)
+  }, [sortBirthNamesList, calculateActiveNameList, addCachedSearchResult])
 
   const getActiveNameListForName = name => {
     const nameList = calculateActiveNameList(name, searchResultCache, activeNameList)
