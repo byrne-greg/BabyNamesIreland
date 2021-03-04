@@ -5,7 +5,7 @@ import { Statistic } from 'antd'
 const LastRecordedYearStat = ({ year = null, style = {} }) => {
   return (
     <Statistic
-      title={`Last recorded year of data:`}
+      title={`Last recorded year of CSO data:`}
       value={year}
       groupSeparator={``}
       style={style}

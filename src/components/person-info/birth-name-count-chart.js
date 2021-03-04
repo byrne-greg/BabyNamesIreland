@@ -20,7 +20,7 @@ const BirthNameCountChart = ({ birthNameCountData }) => {
       <VerticalGridLines />
       <HorizontalGridLines />
       <XAxis title="year" tickPadding={5} tickSizeInner={500} tickLabelAngle={-90} />
-      <YAxis title="births registered"/>
+      <YAxis title="name occurrence"/>
       <LineMarkSeries data={birthNameTotalCountLineData} curve={`curveMonotoneX`} />
       <LineSeries data={birthNameCountAverageLineData} strokeStyle={`dashed`}/>
       <LabelSeries data={birthNameTotalCountLineData} getLabel={d => `${d.y}`} style={{ fontSize: `0.5rem` }} />
