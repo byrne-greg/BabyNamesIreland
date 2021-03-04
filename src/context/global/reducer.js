@@ -9,7 +9,6 @@ import { CACHE_CLEAR, CACHE_ADD_SEARCH_RESULT } from "./actionTypes"
 function globalReducer (state, action) {
   switch (action.type) {
     case CACHE_ADD_SEARCH_RESULT:
-      console.log(state)
       return { ...state, searchResultCache: { ...state.searchResultCache, ...action.value } }
     case CACHE_CLEAR:
       return { ...state, searchResultCache: {} }
