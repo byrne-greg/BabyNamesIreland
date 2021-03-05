@@ -43,7 +43,7 @@ const calculateActiveNameList = (searchName, searchResultCache, activeNameList) 
     // The result list should order the results with the characters that match the start of the name first before showing 'fuzzy' matches (names containing part of the name)
     // e.g. typing 'GA' should show 'Gary' first before 'Abigail'
     const startsWithSearchNameList = activeNameList.filter(({ name }) => name.toUpperCase().startsWith(searchName.toUpperCase()))
-    const containsSearchNameList = activeNameList.filter(person => person.name.toUpperCase().includes(searchName.toUpperCase() || (person.name.toUpperCase().includes(searchName.toUpperCase()) && startsWithSearchNameList.indexOf(person) < 0)))
+    const containsSearchNameList = activeNameList.filter(person => person.name.toUpperCase().includes(searchName.toUpperCase() && (person.name.toUpperCase().includes(searchName.toUpperCase()) && startsWithSearchNameList.indexOf(person) < 0)))
 
     const filteredNameList = [
       ...startsWithSearchNameList,
@@ -128,7 +128,7 @@ const NameCardList = ({ nameList = [] }) => (
     pagination={{
       showSizeChanger: true,
       defaultPageSize: 100,
-      pageSizeOptions: [`100`, `300`, `500`, `800`],
+      pageSizeOptions: [`50`, `100`, `300`, `500`],
       total: nameList.length,
       position: `both`,
     }}
